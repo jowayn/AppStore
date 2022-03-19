@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS reservations(
 	user_id VARCHAR(64) REFERENCES user_base(user_id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	total_price MONEY NOT NULL,
-	room_id VARCHAR(64) REFERENCES listings(listing_id) ,
+	room_id VARCHAR(64) REFERENCES listings(listing_id)
+		ON UPDATE CASCADE ON DELETE CASCADE,
 	date_range DATERANGE NOT NULL,
 	EXCLUDE USING GIST (room_id WITH =, date_range WITH &&)
 );
