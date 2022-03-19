@@ -27,14 +27,15 @@ CREATE TABLE IF NOT EXISTS listings(
 	has_heater BOOLEAN NOT NULL
 );
 
+CREATE EXTENSION btree_gist;
 CREATE TABLE IF NOT EXISTS reservations(
 	reservation_id VARCHAR(20) PRIMARY KEY,
 	user_id VARCHAR(64) REFERENCES user_base(user_id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	total_price MONEY NOT NULL,
-	room_id VARCHAR(10) NOT NULL,
-	start_date DATE NOT NULL,
-	end_date DATE NOT NULL CHECK (end_date > start_date)
+	room_id VARCHAR(64) REFERENCES listings(listing_id) ,
+	date_range DATERANGE NOT NULL,
+	EXCLUDE USING GIST (room_id WITH =, date_range WITH &&)
 );
 
 CREATE TABLE IF NOT EXISTS reviews(
