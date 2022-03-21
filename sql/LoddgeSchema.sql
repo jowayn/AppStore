@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS reservations(
 	listing_id VARCHAR(64) REFERENCES listings(listing_id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	date_range DATERANGE NOT NULL,
-	EXCLUDE USING GIST (room_id WITH =, date_range WITH &&)
+	EXCLUDE USING GIST (listing_id WITH =, date_range WITH &&)
 );
 
 CREATE TABLE IF NOT EXISTS reviews(
