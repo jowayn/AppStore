@@ -40,8 +40,6 @@ CREATE TABLE IF NOT EXISTS reservations(
 );
 
 CREATE TABLE IF NOT EXISTS reviews(
-	listing_id VARCHAR(20) REFERENCES listings(listing_id)
-		ON UPDATE CASCADE ON DELETE CASCADE,
 	reservation_id VARCHAR(20) UNIQUE REFERENCES reservations(reservation_id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	review INT NOT NULL CHECK(review >= 1 AND review <= 5)
