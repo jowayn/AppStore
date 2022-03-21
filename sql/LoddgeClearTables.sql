@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS listings;
+DROP TABLE IF EXISTS user_base;
