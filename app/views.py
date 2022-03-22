@@ -27,8 +27,8 @@ def view(request, name):
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM listings WHERE listing_name = %s", [name])
-        entry = cursor.fetchone()
-    result_dict = {'cust': entry}
+        listing = cursor.fetchone()
+    result_dict = {'list': listing}
 
     return render(request,'app/view.html',result_dict)
 
@@ -90,22 +90,3 @@ def edit(request, id):
     context["status"] = status
  
     return render(request, "app/edit.html", context)
-
-# Create your views here.
-def index(request):
-    """Shows the main page"""
-
-    ## Delete customer
-    if request.POST:
-        if request.POST['action'] == 'delete':
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM customers WHERE customerid = %s", [request.POST['id']])
-
-    ## Use raw query to get all objects
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid")
-        customers = cursor.fetchall()
-
-    result_dict = {'records': customers}
-
-    return render(request,'app/index.html',result_dict)
