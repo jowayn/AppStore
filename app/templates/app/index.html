@@ -61,24 +61,24 @@
             <th>has_kitchen</th>
             <th>has_heater</th>
         </thead>
-        {% for entry in listings %}
+        {% for list in records %}
         <tr>
-            <td> {{ entry.0 }} </td>
-            <td> {{ entry.1 }} </td>
-            <td> {{ entry.2 }} </td>
-            <td> {{ entry.3 }} </td>
-            <td> {{ entry.4 }} </td>
-            <td> {{ entry.5 }} </td>
-            <td> {{ entry.6 }} </td>
-            <td> {{ entry.7 }} </td>
-            <td> {{ entry.8 }} </td>
-            <td> {{ entry.9 }} </td>
-            <td> {{ entry.10 }} </td>
-            <td> {{ entry.11 }} </td>
-            <td> {{ entry.12 }} </td>
-            <td> {{ entry.13 }} </td>
-            <td> {{ entry.14 }} </td>
-            <td> {{ entry.15 }} </td>
+            <td> {{ list.0 }} </td>
+            <td> {{ list.1 }} </td>
+            <td> {{ list.2 }} </td>
+            <td> {{ list.3 }} </td>
+            <td> {{ list.4 }} </td>
+            <td> {{ list.5 }} </td>
+            <td> {{ list.6 }} </td>
+            <td> {{ list.7 }} </td>
+            <td> {{ list.8 }} </td>
+            <td> {{ list.9 }} </td>
+            <td> {{ list.10 }} </td>
+            <td> {{ list.11 }} </td>
+            <td> {{ list.12 }} </td>
+            <td> {{ list.13 }} </td>
+            <td> {{ list.14 }} </td>
+            <td> {{ list.15 }} </td>
             <td>
                 <a href="view/{{entry.0}}"><button>View</button></a> | 
                 <a href="edit/{{entry.0}}"><button>Edit</button></a>
@@ -86,7 +86,7 @@
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{entry.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{entry.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+                <button onclick="return confirm('Are you sure you want to delete {{list.0}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
         {% endfor %}
