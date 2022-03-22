@@ -14,7 +14,7 @@ def index(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM listings ORDER BY listing_id")
-        customers = cursor.fetchall()
+        listings = cursor.fetchall()
 
     result_dict = {'records': listings}
 
@@ -27,8 +27,8 @@ def view(request, name):
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM listings WHERE listing_name = %s", [name])
-        customer = cursor.fetchone()
-    result_dict = {'cust': customer}
+        entry = cursor.fetchone()
+    result_dict = {'cust': entry}
 
     return render(request,'app/view.html',result_dict)
 
