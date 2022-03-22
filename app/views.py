@@ -91,7 +91,6 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
-"""
 # Create your views here.
 def index(request):
     """Shows the main page"""
@@ -181,4 +180,3 @@ def edit(request, id):
     context["status"] = status
  
     return render(request, "app/edit.html", context)
- """
