@@ -1,4 +1,5 @@
 {% load static %}
+<!--
 <html>
 <body>
     <h2>Loddge</h2>
@@ -25,6 +26,67 @@
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{cust.5}}"/>
                 <button onclick="return confirm('Are you sure you want to delete {{cust.5}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+-->
+
+{% load static %}
+<html>
+<body>
+    <h2>Loddge</h2>
+    <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
+    <a href="add">New listing</a>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>listing_id</th>
+            <th>listing_name</th>
+            <th>neighbourhood</th>
+            <th>neighbourhood_group</th>
+            <th>address</th>
+            <th>latitude</th>
+            <th>longtitude</th>
+            <th>room_type</th>
+            <th>price</th>
+            <th>owner_id</th>
+            <th>total_occupancy</th>
+            <th>total_bedrooms</th>
+            <th>has_internet</th>
+            <th>has_aircon</th>
+            <th>has_kitchen</th>
+            <th>has_heater</th>
+        </thead>
+        {% for entry in listings %}
+        <tr>
+            <td> {{ entry.0 }} </td>
+            <td> {{ entry.1 }} </td>
+            <td> {{ entry.2 }} </td>
+            <td> {{ entry.3 }} </td>
+            <td> {{ entry.4 }} </td>
+            <td> {{ entry.5 }} </td>
+            <td> {{ entry.6 }} </td>
+            <td> {{ entry.7 }} </td>
+            <td> {{ entry.8 }} </td>
+            <td> {{ entry.9 }} </td>
+            <td> {{ entry.10 }} </td>
+            <td> {{ entry.11 }} </td>
+            <td> {{ entry.12 }} </td>
+            <td> {{ entry.13 }} </td>
+            <td> {{ entry.14 }} </td>
+            <td> {{ entry.15 }} </td>
+            <td>
+                <a href="view/{{entry.0}}"><button>View</button></a> | 
+                <a href="edit/{{entry.0}}"><button>Edit</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{entry.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{entry.0}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
         {% endfor %}
