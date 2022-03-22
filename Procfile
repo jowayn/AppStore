@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn Loddge.wsgi
+web: gunicorn Loddge.wsgi 
