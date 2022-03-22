@@ -11,7 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AppStore.settings')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Loddge.settings')
 
 application = get_wsgi_application()
