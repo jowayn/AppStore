@@ -39,13 +39,13 @@
             <td> {{ list.12 }} </td>
             <td> {{ list.13 }} </td>
             <td>
-                <a href="view/{{list.0}}"><button>View More Details</button></a> | 
+                <a href="view/{{list.0}}"><button>More Details</button></a> | 
                 <a href="edit/{{list.0}}"><button>Edit</button></a>
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{list.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{list.0}}?');" type="submit" name="action" value="delete">Delete Listing</button> 
+                <button onclick="return confirm('Are you sure you want to delete Listing ID: {{list.0}}?');" type="submit" name="action" value="delete">Delete Listing</button> 
               </form></td>
         </tr>
         {% endfor %}
