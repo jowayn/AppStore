@@ -42,12 +42,12 @@ def add(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [request.POST['customerid']])
+            cursor.execute("SELECT * FROM listings WHERE listing_id = %s", [request.POST['listing_id']])
             customer = cursor.fetchone()
-            ## No customer with same id
+            ## No listing with same id
             if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO customers VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                cursor.execute("INSERT INTO listings VALUES (%d, %s, %s, %s, %s, %d, %d, %s, %s, %s, %d, %d, %s, %s, %s, %s)"
                         , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
                            request.POST['dob'] , request.POST['since'], request.POST['customerid'], request.POST['country'] ])
                 return redirect('index')    
