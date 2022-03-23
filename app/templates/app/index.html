@@ -17,10 +17,6 @@
             <th>Owner ID</th>
             <th>Total Occupancy</th>
             <th>Total Bedrooms</th>
-            <th>Has Internet</th>
-            <th>Has Aircon</th>
-            <th>Has Kitchen</th>
-            <th>Has Heater</th>
         </thead>
         {% for list in records %}
         <tr>
@@ -34,10 +30,6 @@
             <td> {{ list.7 }} </td>
             <td> {{ list.8 }} </td>
             <td> {{ list.9 }} </td>
-            <td> {{ list.10 }} </td>
-            <td> {{ list.11 }} </td>
-            <td> {{ list.12 }} </td>
-            <td> {{ list.13 }} </td>
             <td>
                 <a href="view/{{list.0}}"><button>More Details</button></a> | 
                 <a href="edit/{{list.0}}"><button>Edit</button></a>
