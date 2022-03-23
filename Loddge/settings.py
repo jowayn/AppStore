@@ -58,7 +58,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#ROOT_URLCONF = 'AppStore.urls'
 ROOT_URLCONF = 'Loddge.urls'
 
 TEMPLATES = [
@@ -77,7 +76,6 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'AppStore.wsgi.application'
 WSGI_APPLICATION = 'Loddge.wsgi.application'
 
 
