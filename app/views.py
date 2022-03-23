@@ -47,7 +47,7 @@ def add(request):
             ## No listing with same id
             if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO listings VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                cursor.execute("INSERT INTO listings VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
                         , [request.POST['listing_id'], request.POST['listing_name'], request.POST['neighbourhood'],
                            request.POST['neighbourhood_group'] , request.POST['address'],
                            request.POST['room_type'] , request.POST['price'], request.POST['owner_id'], request.POST['total_occupancy'],
