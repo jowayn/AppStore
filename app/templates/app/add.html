@@ -9,18 +9,47 @@
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
-        <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
-        First name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="first_name" maxlength="64" class="textinput textInput" required="" id="id_first_name"> </div> </div> <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
-        Last name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="last_name" maxlength="64" class="textinput textInput" required="" id="id_last_name"> </div> </div> <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField">
-        Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> <div id="div_id_dob" class="control-group"> <label for="id_dob" class="control-label requiredField">
-        Date of birth (yyyy-mm-dd)<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="dob" class="dateinput" required="" id="id_dob"> </div> </div> <div id="div_id_since" class="control-group"> <label for="id_since" class="control-label requiredField">
-        Since (yyyy-mm-dd)<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="since" class="dateinput" required="" id="id_since"> </div> </div> <div id="div_id_customerid" class="control-group"> <label for="id_customerid" class="control-label requiredField">
-        Customerid<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="customerid" maxlength="16" class="textinput textInput" required="" id="id_customerid"> </div> </div> <div id="div_id_country" class="control-group"> <label for="id_country" class="control-label requiredField">
-        Country<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="country" maxlength="16" class="textinput textInput" required="" id="id_country"> </div> </div>
+        <div id="div_id_listing_id" class="control-group"> <label for="id_listing_id" class="control-label requiredField">
+        Listing ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="listing_id" maxlength="64" class="textinput textInput" required="" id="id_listing_id"> </div> </div> 
+        
+        <div id="div_id_listing_name" class="control-group"> <label for="id_listing_name" class="control-label requiredField">
+        Listing Name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="listing_name" maxlength="64" class="textinput textInput" required="" id="id_listing_name"> </div> </div> 
+        
+        <div id="div_neighbourhood" class="control-group"> <label for="id_neighbourhood" class="control-label requiredField">
+        Neighbourhood<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="neighbourhood" maxlength="64" class="textinput textInput" required="" id="id_neighbourhood"> </div> </div> 
+        
+        <div id="div_neighbourhood_group" class="control-group"> <label for="id_neighbourhood_group" class="control-label requiredField">
+        Neighbourhood Group<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="neighbourhood_group" maxlength="64" class="textinput textInput" required="" id="id_neighbourhood_group"> </div> </div>
+        
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Address<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+        
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Room Type<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+        
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Price<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Owner ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Total Occupancy<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Total Bedrooms<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Address<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Address<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
+
+        <div id="div_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Address<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="address" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> 
 
         <br>
         <button type="submit" value="Add">Add</button>
     </form>
 </body>
 </html>
-
