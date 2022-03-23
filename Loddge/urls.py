@@ -1,4 +1,4 @@
-"""AppStore URL Configuration
+"""Loddge URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.index, name='index'),
     path('add', app.views.add, name='add'),
-    path('view/<str:id>', app.views.view, name='view'),
-    path('edit/<str:id>', app.views.edit, name='edit'),
+    path('view/<str:name>', app.views.view, name='view'),
+    path('edit/<str:name>', app.views.edit, name='edit'),
 ] 
