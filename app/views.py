@@ -26,7 +26,7 @@ def view(request, name):
     
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM listings WHERE listing_name = %s", [name])
+        cursor.execute("SELECT * FROM listings WHERE listing_id = %s", [name])
         listing = cursor.fetchone()
     result_dict = {'list': listing}
 
