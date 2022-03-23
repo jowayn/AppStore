@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS listings(
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	total_occupancy INT NOT NULL,
 	total_bedrooms INT NOT NULL,
-	has_internet BOOLEAN NOT NULL,
-	has_aircon BOOLEAN NOT NULL,
-	has_kitchen BOOLEAN NOT NULL,
-	has_heater BOOLEAN NOT NULL
+	has_internet VARCHAR(64) NOT NULL,
+	has_aircon VARCHAR(64) NOT NULL,
+	has_kitchen VARCHAR(64) NOT NULL,
+	has_heater VARCHAR(64) NOT NULL
 );
 
 CREATE EXTENSION IF NOT EXISTS btree_gist;
