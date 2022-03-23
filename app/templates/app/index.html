@@ -1,4 +1,56 @@
 {% load static %}
+<html>
+<body>
+    <h2>Loddge</h2>
+    <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
+    <a href="add">New listing</a>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>listing_id</th>
+            <th>listing_name</th>
+            <th>neighbourhood</th>
+            <th>neighbourhood_group</th>
+            <th>address</th>
+            <th>room_type</th>
+            <th>price</th>
+            <th>total_occupancy</th>
+            <th>total_bedrooms</th>
+            <th>has_internet</th>
+            <th>has_aircon</th>
+            <th>has_kitchen</th>
+            <th>has_heater</th>
+        </thead>
+        {% for list in records %}
+        <tr>
+            <td> {{ list.0 }} </td>
+            <td> {{ list.1 }} </td>
+            <td> {{ list.2 }} </td>
+            <td> {{ list.3 }} </td>
+            <td> {{ list.4 }} </td>
+            <td> {{ list.7 }} </td>
+            <td> {{ list.8 }} </td>
+            <td> {{ list.10 }} </td>
+            <td> {{ list.11 }} </td>
+            <td> {{ list.12 }} </td>
+            <td> {{ list.13 }} </td>
+            <td> {{ list.14 }} </td>
+            <td> {{ list.15 }} </td>
+            <td>
+                <a href="view/{{list.0}}"><button>View More Details</button></a> | 
+                <a href="edit/{{list.0}}"><button>Edit</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{entry.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{list.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
 <!--
 <html>
 <body>
@@ -34,62 +86,3 @@
 </html>
 
 -->
-
-{% load static %}
-<html>
-<body>
-    <h2>Loddge</h2>
-    <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
-    <a href="add">New listing</a>
-    <br/><br/>
-    <table border=1>
-        <thead>
-            <th>listing_id</th>
-            <th>listing_name</th>
-            <th>neighbourhood</th>
-            <th>neighbourhood_group</th>
-            <th>address</th>
-            <th>latitude</th>
-            <th>longtitude</th>
-            <th>room_type</th>
-            <th>price</th>
-            <th>owner_id</th>
-            <th>total_occupancy</th>
-            <th>total_bedrooms</th>
-            <th>has_internet</th>
-            <th>has_aircon</th>
-            <th>has_kitchen</th>
-            <th>has_heater</th>
-        </thead>
-        {% for list in records %}
-        <tr>
-            <td> {{ list.0 }} </td>
-            <td> {{ list.1 }} </td>
-            <td> {{ list.2 }} </td>
-            <td> {{ list.3 }} </td>
-            <td> {{ list.4 }} </td>
-            <td> {{ list.5 }} </td>
-            <td> {{ list.6 }} </td>
-            <td> {{ list.7 }} </td>
-            <td> {{ list.8 }} </td>
-            <td> {{ list.9 }} </td>
-            <td> {{ list.10 }} </td>
-            <td> {{ list.11 }} </td>
-            <td> {{ list.12 }} </td>
-            <td> {{ list.13 }} </td>
-            <td> {{ list.14 }} </td>
-            <td> {{ list.15 }} </td>
-            <td>
-                <a href="view/{{list.0}}"><button>View</button></a> | 
-                <a href="edit/{{list.0}}"><button>Edit</button></a>
-                | 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{entry.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{list.0}}?');" type="submit" name="action" value="delete">Delete</button> 
-              </form></td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
