@@ -21,12 +21,12 @@ def index(request):
     return render(request,'app/index.html',result_dict)
 
 # Create your views here.
-def view(request, name):
+def view(request, id):
     """Shows the main page"""
     
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM listings WHERE listing_id = %s", [name])
+        cursor.execute("SELECT * FROM listings WHERE listing_id = %s", [id])
         listing = cursor.fetchone()
     result_dict = {'list': listing}
 
