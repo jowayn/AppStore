@@ -47,12 +47,15 @@ def add(request):
             ## No listing with same id
             if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO listings VALUES (%d, %s, %s, %s, %s, %d, %d, %s, %s, %s, %d, %d, %s, %s, %s, %s)"
-                        , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
-                           request.POST['dob'] , request.POST['since'], request.POST['customerid'], request.POST['country'] ])
+                cursor.execute("INSERT INTO listings VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                        , [request.POST['listing_id'], request.POST['listing_name'], request.POST['neighbourhood'],
+                           request.POST['neighbourhood_group'] , request.POST['address'], request.POST['latitude'], request.POST['longitude'],
+                           request.POST['room_type'] , request.POST['price'], request.POST['owner_id'], request.POST['total_occupancy'],
+                           request.POST['total_bedrooms'] , request.POST['has_internet'], request.POST['has_aircon'], request.POST['has_kitchen'],
+                           request.POST['has_heater'] ])
                 return redirect('index')    
             else:
-                status = 'Customer with ID %s already exists' % (request.POST['customerid'])
+                status = 'Listing with ID %s already exists' % (request.POST['listing_id'])
 
 
     context['status'] = status
