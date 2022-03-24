@@ -137,11 +137,12 @@ def marketplace(request):
 
         with connection.cursor() as cursor:
             cursor.execute(
-                "
+                """
                 SELECT * 
                 FROM listings l
                 ORDER BY l.listing_id
-                "),
+                """
+                ),
             listings = cursor.fetchall()
 
         result_dict = {'records': listings}
