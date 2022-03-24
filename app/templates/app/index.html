@@ -30,11 +30,6 @@
 </style>
     
 <body>
-    <div class="container-fluid p-5 bg-secondary text-white text-center">
-        <h1>Loddge</h1>
-        <p>The One Stop Apartment Rental Marketplace</p> 
-    </div>
-
     <div class="container mt-5">
         <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
         <a href="marketplace">
@@ -58,39 +53,3 @@
     </a> -->
 </body>
 </html>
-
-<!--
-<html>
-<body>
-    <h2>Loddge</h2>
-    <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
-    <a href="add">New customer</a>
-    <br/><br/>
-    <table border=1>
-        <thead>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Action</th>
-        </thead>
-        {% for cust in records %}
-        <tr>
-            <td> {{ cust.5 }} </td>
-            <td> {{ cust.0 }} </td>
-            <td> {{ cust.1 }} </td>
-            <td>
-                <a href="view/{{cust.5}}"><button>View</button></a> | 
-                <a href="edit/{{cust.5}}"><button>Edit</button></a>
-                | 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{cust.5}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{cust.5}}?');" type="submit" name="action" value="delete">Delete</button> 
-              </form></td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
-
--->
