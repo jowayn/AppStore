@@ -13,7 +13,7 @@
 <style>
     .block {
     display: block;
-    width: 30%;
+    width: 20%;
     border: none;
     background-color: #BBBBBB;
     color: white;
@@ -27,10 +27,19 @@
     background-color: #ddd;
     color: black;
     }
+    
+    table, th, td {
+    border: 1px solid black;
+    }
+    
+    div.a {
+    font-size: 90%;
+    }
+    
 </style>
 
 <body>
-    <h1>View Current Reservations</h1>
+    <h2>View Current Reservations</h2>
     
     <a href="/">
         <button class="block">Back to Home</button>
@@ -68,12 +77,12 @@
     <h2>Search Results: </h2>
     <br>
     <table border=1>
-        <thead>
+        <div class="a"><thead>
             <th>Reservation ID</th>
             <th>User</th>
             <th>Listing ID</th>
             <th>Date Range</th>
-        </thead>
+        </thead></div>
         {% for listR in recordsR %}
         <tr>
             <td> {{ listR.0 }} </td>
