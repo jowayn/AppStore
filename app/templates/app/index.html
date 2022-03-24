@@ -1,11 +1,33 @@
 {% load static %}
 <html>
+
+<style>
+    .block {
+      display: block;
+      width: 50%;
+      border: none;
+      background-color: #BBBBBB;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .block:hover {
+      background-color: #ddd;
+      color: black;
+    }
+</style>
+    
 <body>
     <h1>Loddge - The One Stop Apartment Rental Marketplace</h1>
     <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
+    
     <a href="marketplace">
-        <button>Go to the Marketplace!</button>
+        <button class="block">Go to the Marketplace!</button>
     </a>
+    
     <br><br>
     <table border=1>
         <thead>
