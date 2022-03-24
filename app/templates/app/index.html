@@ -4,7 +4,7 @@
 <style>
     .block {
       display: block;
-      width: 50%;
+      width: 30%;
       border: none;
       background-color: #BBBBBB;
       color: white;
@@ -27,45 +27,12 @@
     <a href="marketplace">
         <button class="block">Go to the Marketplace!</button>
     </a>
+    <br>
+    <a href="reservations">
+        <button class="block">View Current Reservations</button>
+    </a>
     
     <br><br>
-    <table border=1>
-        <thead>
-            <th>Listing ID</th>
-            <th>Listing Name</th>
-            <th>Neighbourhood</th>
-            <th>Neighbourhood Group</th>
-            <th>Address</th>
-            <th>Room Type</th>
-            <th>Price Per Night</th>
-            <th>Owner ID</th>
-            <th>Total Occupancy</th>
-            <th>Total Bedrooms</th>
-        </thead>
-        {% for list in records %}
-        <tr>
-            <td> {{ list.0 }} </td>
-            <td> {{ list.1 }} </td>
-            <td> {{ list.2 }} </td>
-            <td> {{ list.3 }} </td>
-            <td> {{ list.4 }} </td>
-            <td> {{ list.5 }} </td>
-            <td> {{ list.6 }} </td>
-            <td> {{ list.7 }} </td>
-            <td> {{ list.8 }} </td>
-            <td> {{ list.9 }} </td>
-            <td>
-                <a href="view/{{list.0}}"><button>More Details</button></a> | 
-                <a href="edit/{{list.0}}"><button>Edit</button></a>
-                | 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{list.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete Listing ID: {{list.0}}?');" type="submit" name="action" value="delete">Delete Listing</button> 
-              </form></td>
-        </tr>
-        {% endfor %}
-    </table>
 </body>
 </html>
 
