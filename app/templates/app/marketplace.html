@@ -70,7 +70,7 @@
     <h2>Search Results: </h2>
     <br>
     <table>
-        <div class="a"><thead>
+        <thead>
             <th>Listing ID</th>
             <th>Listing Name</th>
             <th>Neighbourhood</th>
@@ -81,7 +81,7 @@
             <th>Owner ID</th>
             <th>Total Occupancy</th>
             <th>Total Bedrooms</th>
-        </thead></div>
+        </thead>
         {% for list in records %}
         <tr>
             <td> {{ list.0 }} </td>
