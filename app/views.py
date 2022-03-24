@@ -93,3 +93,44 @@ def edit(request, id):
     context["status"] = status
  
     return render(request, "app/edit.html", context)
+
+def marketplace(request):
+    """Shows the listings table"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        if request.POST['action'] == 'search':
+            with connection.cursor() as cursor:
+                cursor.execute(
+                """
+                SELECT * 
+                FROM  listings l
+                WHERE neighbourhood_group = %s 
+                AND total_occupancy = %s 
+                ORDER BY l.listing_id""",
+                [
+                    request.POST['neighbourhood_group'],
+                    request.POST['total_occupancy']
+                ])                
+                listings = cursor.fetchall()
+
+            result_dict = {'records': listings}
+
+            return render(request,'app/marketplace.html', result_dict)
+    else:
+        context['status'] = status
+        ## Use sample query to get listings
+
+        """
+        """
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                """),
+            listings = cursor.fetchall()
+
+        result_dict = {'records': listings}
+
+        return render(request,'app/marketplace.html', result_dict)
