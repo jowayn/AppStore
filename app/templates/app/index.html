@@ -30,18 +30,32 @@
 </style>
     
 <body>
-    <h2>Loddge - The One Stop Apartment Rental Marketplace</h2>
-    <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
+    <div class="container-fluid p-5 bg-secondary text-white text-center">
+        <h1>Loddge</h1>
+        <p>The One Stop Apartment Rental Marketplace</p> 
+    </div>
+
+    <div class="container mt-5">
+        <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/>
+        <a href="marketplace">
+            <button class="block">Go to the Marketplace!</button>
+        </a>
+        <br>
+        <a href="reservations">
+            <button class="block">View Current Reservations</button>
+        </a>
+    </div>
     
-    <a href="marketplace">
+<!--     <h2>Loddge - The One Stop Apartment Rental Marketplace</h2> -->
+<!--     <img src="{% static 'app/images/loddge_logo.png' %}" width="30%"   alt="loddge logo"/><br/> -->
+    
+<!--     <a href="marketplace">
         <button class="block">Go to the Marketplace!</button>
     </a>
     <br>
     <a href="reservations">
         <button class="block">View Current Reservations</button>
-    </a>
-    
-    <br><br>
+    </a> -->
 </body>
 </html>
 
