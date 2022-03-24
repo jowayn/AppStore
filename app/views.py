@@ -81,22 +81,7 @@ def edit(request, id):
         ##TODO: date validation
         with connection.cursor() as cursor:
             cursor.execute(
-               "   
-               UPDATE listings SET listing_id = %s, 
-                listing_name = %s, 
-                neighbourhood = %s, 
-                neighbourhood_group = %s, 
-                address = %s, 
-                room_type = %s,
-                price = %s,
-                owner_id = %s,
-                total_occupancy = %s,
-                total_bedrooms = %s,
-                has_internet = %s,
-                has_aircon = %s,
-                has_kitchen = %s,
-                has_heater = %s
-               WHERE listing_id = %s"
+               "UPDATE listings SET listing_id = %s, listing_name = %s, neighbourhood = %s, neighbourhood_group = %s, address = %s, room_type = %s,price = %s,owner_id = %s,total_occupancy = %s,total_bedrooms = %s,has_internet = %s,has_aircon = %s,has_kitchen = %s,has_heater = %s WHERE listing_id = %s"
                     , [request.POST['listing_id'], request.POST['listing_name'], request.POST['neighbourhood'],
                            request.POST['neighbourhood_group'] , request.POST['address'],
                            request.POST['room_type'] , request.POST['price'], request.POST['owner_id'], request.POST['total_occupancy'],
