@@ -22,7 +22,7 @@ def index(request):
 
 # Create your views here.
 def view(request, id):
-    """Shows the main page"""
+    """Shows view page"""
     
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
@@ -34,7 +34,7 @@ def view(request, id):
 
 # Create your views here.
 def add(request):
-    """Shows the main page"""
+    """Shows add page"""
     context = {}
     status = ''
 
@@ -63,7 +63,7 @@ def add(request):
 
 # Create your views here.
 def edit(request, id):
-    """Shows the main page"""
+    """Shows edit page"""
 
     # dictionary for initial data with
     # field names as keys
@@ -81,12 +81,21 @@ def edit(request, id):
         ##TODO: date validation
         with connection.cursor() as cursor:
             cursor.execute(
-               "UPDATE listings SET listing_id = %s, listing_name = %s, neighbourhood = %s, neighbourhood_group = %s, address = %s, room_type = %s,price = %s,owner_id = %s,total_occupancy = %s,total_bedrooms = %s,has_internet = %s,has_aircon = %s,has_kitchen = %s,has_heater = %s WHERE listing_id = %s"
-                    , [request.POST['listing_id'], request.POST['listing_name'], request.POST['neighbourhood'],
-                           request.POST['neighbourhood_group'] , request.POST['address'],
-                           request.POST['room_type'] , request.POST['price'], request.POST['owner_id'], request.POST['total_occupancy'],
-                           request.POST['total_bedrooms'] , request.POST['has_internet'], request.POST['has_aircon'], request.POST['has_kitchen'],
-                           request.POST['has_heater'], id ])
+               """
+               UPDATE listings SET listing_id = %s, 
+                   listing_name = %s, neighbourhood = %s, 
+                   neighbourhood_group = %s, address = %s, 
+                   room_type = %s,price = %s,owner_id = %s,
+                   total_occupancy = %s,total_bedrooms = %s,
+                   has_internet = %s,has_aircon = %s,
+                   has_kitchen = %s,has_heater = %s 
+               WHERE listing_id = %s
+               """
+            , [request.POST['listing_id'], request.POST['listing_name'], request.POST['neighbourhood'],
+                   request.POST['neighbourhood_group'] , request.POST['address'],
+                   request.POST['room_type'] , request.POST['price'], request.POST['owner_id'], request.POST['total_occupancy'],
+                   request.POST['total_bedrooms'] , request.POST['has_internet'], request.POST['has_aircon'], request.POST['has_kitchen'],
+                   request.POST['has_heater'], id ])
             status = 'Listing edited successfully!'
             cursor.execute("SELECT * FROM listings WHERE listing_id = %s", [id])
             obj = cursor.fetchone()
@@ -106,13 +115,13 @@ def marketplace(request):
         if request.POST['action'] == 'search':
             with connection.cursor() as cursor:
                 cursor.execute(
-                "
+                """
                 SELECT * 
                 FROM  listings l
                 WHERE neighbourhood_group = %s 
                 AND total_occupancy = %s 
                 ORDER BY l.listing_id
-                ",
+                """,
                 [
                     request.POST['neighbourhood_group'],
                     request.POST['total_occupancy']
@@ -125,9 +134,6 @@ def marketplace(request):
     else:
         context['status'] = status
         ## Use sample query to get listings
-
-        """
-        """
 
         with connection.cursor() as cursor:
             cursor.execute(
