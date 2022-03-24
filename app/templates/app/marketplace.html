@@ -13,7 +13,7 @@
 <style>
     .block {
     display: block;
-    width: 30%;
+    width: 10%;
     border: none;
     background-color: #BBBBBB;
     color: white;
@@ -26,6 +26,10 @@
     .block:hover {
     background-color: #ddd;
     color: black;
+    }
+    
+    table, th, td {
+    border: 1px solid black;
     }
 </style>
     
@@ -59,9 +63,10 @@
         <button>Add New Listing</button>
     </a>
     <br>
+    <br>
     <h2>Search Results: </h2>
     <br>
-    <table border=1>
+    <table>
         <thead>
             <th>Listing ID</th>
             <th>Listing Name</th>
@@ -87,7 +92,7 @@
             <td> {{ list.8 }} </td>
             <td> {{ list.9 }} </td>
             <td>
-                <a href="view/{{list.0}}"><button>More Details</button></a> | 
+                <a href="view/{{list.0}}"><button>Details</button></a> | 
                 <a href="edit/{{list.0}}"><button>Edit</button></a>
                 | 
                 <form method="POST" style="display: inline;">
