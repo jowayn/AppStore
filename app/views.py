@@ -144,7 +144,7 @@ def reservations(request):
                 ),
             reservations = cursor.fetchall()
 
-        result_dict = {'recordsR': reservations}
+        result_dictR = {'recordsR': reservations}
 
         return render(request,'app/reservations.html', result_dictR)
 
