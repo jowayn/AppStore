@@ -1,1 +1,69 @@
 {% load static %}
+
+<html>
+<body>
+    <h1>Welcome to the Marketplace!</h1>
+    <a href="/">Back to Home</a>
+    <br>
+    <h2>Please Enter Neighbourhood Group (City) and Total Occupancy</h2>
+  
+      <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+
+        <div id="div_id_neighbourhood_group" class="control-group"> <label for="id_neighbourhood_group">
+        Neighbourhood Group<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="neighbourhood_group" maxlength="64" class="textinput textInput" required="" id="id_neighbourhood_group"> </div> </div>
+
+        <div id="div_id_total_occupancy" class="control-group"> <label for="id_total_occupancy">
+        Total Occupancy<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" min="1" name="total_occupancy" maxlength="64" class="textinput textInput" required="" id="id_total_occupancy"> </div> </div>
+        
+        <br>
+        <a href="">
+            <button type="submit" name=action value="search">Search</button>
+        </a>
+    </form>
+    
+    <span> <h2> Click </h2> <a href="add">here</a> <h2> to Add New Listing </h2> </span>
+  
+    <h2>Search Results: </h2>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Listing ID</th>
+            <th>Listing Name</th>
+            <th>Neighbourhood</th>
+            <th>Neighbourhood Group</th>
+            <th>Address</th>
+            <th>Room Type</th>
+            <th>Price Per Night</th>
+            <th>Owner ID</th>
+            <th>Total Occupancy</th>
+            <th>Total Bedrooms</th>
+        </thead>
+        {% for list in records %}
+        <tr>
+            <td> {{ list.0 }} </td>
+            <td> {{ list.1 }} </td>
+            <td> {{ list.2 }} </td>
+            <td> {{ list.3 }} </td>
+            <td> {{ list.4 }} </td>
+            <td> {{ list.5 }} </td>
+            <td> {{ list.6 }} </td>
+            <td> {{ list.7 }} </td>
+            <td> {{ list.8 }} </td>
+            <td> {{ list.9 }} </td>
+            <td>
+                <a href="view/{{list.0}}"><button>More Details</button></a> | 
+                <a href="edit/{{list.0}}"><button>Edit</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{list.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete Listing ID: {{list.0}}?');" type="submit" name="action" value="delete">Delete Listing</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
