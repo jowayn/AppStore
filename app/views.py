@@ -5,20 +5,15 @@ from django.db import connection
 def index(request):
     """Shows the main page"""
 
-    ## Delete customer
-    if request.POST:
-        if request.POST['action'] == 'delete':
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM listings WHERE listing_id = %s", [request.POST['id']])
+#     ## Use raw query to get all objects
+#     with connection.cursor() as cursor:
+#         cursor.execute("SELECT * FROM listings ORDER BY listing_id")
+#         listings = cursor.fetchall()
 
-    ## Use raw query to get all objects
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM listings ORDER BY listing_id")
-        listings = cursor.fetchall()
+#     result_dict = {'records': listings}
 
-    result_dict = {'records': listings}
-
-    return render(request,'app/index.html',result_dict)
+#     return render(request,'app/index.html',result_dict)
+    return render(request,'app/index.html')
 
 # Create your views here.
 def view(request, id):
@@ -110,7 +105,13 @@ def marketplace(request):
     """Shows the listings table"""
     context = {}
     status = ''
-
+    
+    ## Delete listing
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM listings WHERE listing_id = %s", [request.POST['id']])
+    
     if request.POST:
         if request.POST['action'] == 'search':
             with connection.cursor() as cursor:
