@@ -101,6 +101,56 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
+def reservations(request):
+    """Shows the reservations table"""
+    context = {}
+    status = ''
+    
+    ## Delete listing
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM reservations WHERE reservation_id = %s", [request.POST['idR']])
+    
+    if request.POST:
+        if request.POST['action'] == 'search':
+            with connection.cursor() as cursor:
+                cursor.execute(
+                """
+                SELECT * 
+                FROM  reservations r
+                WHERE reservation_id = %s 
+                ORDER BY r.reservation_id
+                """,
+                [
+                    request.POST['reservation_id']
+                ])                
+                listings = cursor.fetchall()
+
+            result_dictR = {'recordsR': reservations}
+
+            return render(request,'app/reservations.html', result_dictR)
+    else:
+        context['status'] = status
+        ## Use sample query to get listings
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT * 
+                FROM reservations r
+                ORDER BY r.reservation_id
+                """
+                ),
+            reservations = cursor.fetchall()
+
+        result_dict = {'recordsR': reservations}
+
+        return render(request,'app/reservations.html', result_dictR)
+
+    
+    
+
 def marketplace(request):
     """Shows the listings table"""
     context = {}
