@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 
-def register_request(request):
+def register(request):
     context = {}
     status = ''
     if request.method == "POST":
