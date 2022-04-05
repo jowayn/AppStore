@@ -22,7 +22,6 @@ import app.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.landing, name='landing'),
-    path('register/', app.views.register, name='register'),
     path('home/', app.views.home, name='home'),
     path('marketplace/', app.views.marketplace, name='marketplace'),
     path('marketplace/add/', app.views.add, name='add'),
