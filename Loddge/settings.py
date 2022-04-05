@@ -153,5 +153,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'app.User'
 LOGIN_REDIRECT_URL = "/home"
 LOGOUT_REDIRECT_URL = "/"
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 django_heroku.settings(locals()) 
