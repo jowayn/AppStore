@@ -10,4 +10,4 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         db_table = 'auth_user'
-        fields = ['user_id', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2']
