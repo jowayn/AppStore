@@ -1,6 +1,52 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 
+from django.contrib import messages
+from django.contrib.auth.models import Group
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+
+def register_request(request):
+    context = {}
+    status = ''
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            user = form.save()
+            user_id = form.cleaned_data.get('user_id')
+            group = Group.objects.get(name='user')
+            user.groups.add(group)
+            messages.success(request, 'Account was created for ' + user_id)
+            print('Register User:', request.POST)
+            # POST request: create in user_base table
+            if request.POST['action'] == 'register':
+                with connection.cursor() as cursor:
+                    cursor.execute("SELECT * FROM user_base WHERE user_id = %s", [request.POST['user_id']])
+                    user = cursor.fetchone()
+                ## No user with same id
+                if user == None:
+                    ##TODO: date validation
+                    with connection.cursor() as cursor:
+                        cursor.execute("INSERT INTO user_base VALUES (%s, %s, %s, %s)", 
+                                        [request.POST['user_id'], 
+                                        request.POST['first_name'],
+                                        request.POST['last_name'] , 
+                                        request.POST['phone_number']])
+        
+                else: 
+                    status = 'User with email %s already exists' % (request.POST['user_id'])
+            return redirect("/login")
+        else:
+            print('Invalid Form')
+            messages.error(request, 'Form is Invalid. Try again with valid details.')
+    else:
+        context['status'] = status
+        context['form'] = CreateUserForm()
+    return render(request, 'registration/register.html', context)
+
+
 # Create your views here.
 def index(request):
     """Shows the main page"""
