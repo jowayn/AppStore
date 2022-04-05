@@ -46,10 +46,13 @@ def register(request):
         context['form'] = CreateUserForm()
     return render(request, 'registration/register.html', context)
 
+def landing(request):
+    """Shows the landing page"""
+    return render(request,'app/landing.html')
 
 # Create your views here.
 def home(request):
-    """Shows the main page"""
+    """Shows the home page after login"""
     return render(request,'app/home.html')
 
 # Create your views here.
