@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db import connection
-
+"""
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth import login, authenticate
@@ -45,6 +45,7 @@ def register(request):
         context['status'] = status
         context['form'] = CreateUserForm()
     return render(request, 'registration/register.html', context)
+"""
 
 def landing(request):
     """Shows the landing page"""
