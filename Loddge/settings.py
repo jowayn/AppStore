@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'app',
 ]
 
@@ -148,5 +149,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+AUTH_USER_MODEL = 'app.User'
+LOGIN_REDIRECT_URL = "/home"
+LOGOUT_REDIRECT_URL = "/"
 
 django_heroku.settings(locals()) 
