@@ -33,6 +33,6 @@ psql ${URI} -f sql/LoddgeClearTables.sql
 psql ${URI} -f sql/LoddgeSchema.sql
 psql ${URI} -f sql/Loddge_user_base.sql
 psql ${URI} -f sql/Loddge_listings.sql
-#psql ${URI} -f sql/Loddge_reservations.sql
+psql ${URI} -f sql/Loddge_reservations.sql
 #psql ${URI} -f sql/Loddge_reviews.sql
 
