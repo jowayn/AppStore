@@ -149,10 +149,12 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+"""
 AUTH_USER_MODEL = 'app.User'
 LOGIN_REDIRECT_URL = "/home"
 LOGOUT_REDIRECT_URL = "/"
-DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+"""
 
 django_heroku.settings(locals()) 
