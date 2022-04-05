@@ -1,7 +1,5 @@
 CREATE TABLE IF NOT EXISTS user_base(
 	user_id VARCHAR(64) PRIMARY KEY, 
-	user_password VARCHAR(64) NOT NULL, 
-
 	first_name VARCHAR(64) NOT NULL, 
 	last_name VARCHAR(64) NOT NULL, 
 	phone_number NUMERIC NOT NULL
