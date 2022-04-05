@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.db import connection
 
 # Create your views here.
-def homepage(request):
+def index(request):
     """Shows the main page"""
-    return render(request,'app/homepage.html')
+    return render(request,'app/index.html')
 
 # Create your views here.
 def view(request, id):
