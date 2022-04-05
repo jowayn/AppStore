@@ -2,18 +2,9 @@ from django.shortcuts import render, redirect
 from django.db import connection
 
 # Create your views here.
-def index(request):
+def homepage(request):
     """Shows the main page"""
-
-#     ## Use raw query to get all objects
-#     with connection.cursor() as cursor:
-#         cursor.execute("SELECT * FROM listings ORDER BY listing_id")
-#         listings = cursor.fetchall()
-
-#     result_dict = {'records': listings}
-
-#     return render(request,'app/index.html',result_dict)
-    return render(request,'app/index.html')
+    return render(request,'app/homepage.html')
 
 # Create your views here.
 def view(request, id):
