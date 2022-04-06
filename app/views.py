@@ -60,7 +60,7 @@ def login(request):
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('services', request.POST["user_id"])
+                return redirect('marketplace')
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
