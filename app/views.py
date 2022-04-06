@@ -61,6 +61,8 @@ def login(request):
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
                 return redirect('admin_page')
+            else:
+                status = "Login failed, wrong password."
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
@@ -89,7 +91,7 @@ def register(request):
                                 request.POST['phone_number']])
                 return redirect('login')    
             else:
-                status = 'User with ID %s already exists' % (request.POST['user'])
+                status = 'User with ID %s already exists' % (request.POST['user_id'])
     context['status'] = status
     return render(request, "app/register.html", context)
 
