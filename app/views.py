@@ -56,7 +56,7 @@ def dashboard(request):
 
     context['status'] = status
     ## Use sample query to get listings
-
+    """Displays the total revenue for each listing"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -70,10 +70,26 @@ def dashboard(request):
             """
             ),
         totalrev = cursor.fetchall()
+        result_dictRev = {'recordsRev': totalrev}
+        
+    """Displays the total revenue for each neighbourhood, along with number of listings in that neighbourhood"""
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT l.neighbourhood,
+            SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue,
+            COUNT(*) as number_of_listings
+            FROM reservations r, listings l
+            WHERE r.listing_id = l.listing_id
+            GROUP BY l.neighbourhood
+            ORDER BY total_revenue DESC;
+            LIMIT 10;
+            """
+            ),
+        totalrevL = cursor.fetchall()
+        result_dictRevL = {'recordsRevL': totalrevL}
 
-    result_dictRev = {'recordsRev': totalrev}
-
-    return render(request,'app/dashboard.html', result_dictRev)
+    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL})
 
 def admin_page(request):
     """Shows the admin page"""
