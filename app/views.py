@@ -77,13 +77,13 @@ def register(request):
             user = cursor.fetchone()
             ## No user with same id
             if user == None:
-                        cursor.execute("INSERT INTO user_base VALUES (%s, %s, %s, %s, %s)", 
-                                        [request.POST['email'],
-                                        request.POST['user_password'], 
-                                        request.POST['first_name'],
-                                        request.POST['last_name'] , 
-                                        request.POST['phone_number']])
-                return redirect('login_provider')    
+                cursor.execute("INSERT INTO user_base VALUES (%s, %s, %s, %s, %s)", 
+                               [request.POST['email'],
+                                request.POST['user_password'], 
+                                request.POST['first_name'],
+                                request.POST['last_name'] , 
+                                request.POST['phone_number']])
+                return redirect('login')    
             else:
                 status = 'User with ID %s already exists' % (request.POST['user'])
     context['status'] = status
