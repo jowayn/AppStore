@@ -29,5 +29,6 @@ urlpatterns = [
     path('marketplace/edit/<str:id>', app.views.edit, name='edit'),
     path('reservations/', app.views.reservations, name='reservations'),
     path('register/', app.views.register, name='register'),
-    path('login/', app.views.login, name='login')
+    path('login/', app.views.login, name='login'),
+    path('admin/', app.views.admin, name='admin')
 ] 
