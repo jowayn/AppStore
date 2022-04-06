@@ -89,14 +89,15 @@ def dashboard(request):
         totalrevL = cursor.fetchall()
         result_dictRevL = {'recordsRevL': totalrevL}
         
-    """Displays the total revenue for each owner"""
+    """Displays the top 20% of Owners by Total Revenue"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
-            SELECT l.owner_id,
+            SELECT l.owner_id, u.first_name, u.last_name,
                 SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue
-            FROM reservations r, listings l
+            FROM reservations r, listings l, user_base u
             WHERE r.listing_id = l.listing_id
+                AND l.owner_id = u.user.id
             GROUP BY l.owner_id
             ORDER BY total_revenue DESC
             LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
