@@ -60,7 +60,7 @@ def login(request):
         elif customers[0] == "admin@admin.com":
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('admin')
+                return redirect('admin_page')
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
@@ -93,9 +93,9 @@ def register(request):
     context['status'] = status
     return render(request, "app/register.html", context)
 
-def admin(request):
+def admin_page(request):
     """Shows the admin page"""
-    return render(request,'app/admin.html')
+    return render(request,'app/admin_page.html')
 
 def landing(request):
     """Shows the landing page"""
