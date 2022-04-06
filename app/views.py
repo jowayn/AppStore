@@ -98,7 +98,7 @@ def dashboard(request):
             FROM reservations r, listings l, user_base u
             WHERE r.listing_id = l.listing_id
                 AND l.owner_id = u.user_id
-            GROUP BY l.owner_id
+            GROUP BY l.owner_id, u.first_name, u.last_name
             ORDER BY total_revenue DESC
             LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
             """
