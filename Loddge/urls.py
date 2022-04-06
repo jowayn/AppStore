@@ -23,13 +23,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.landing, name='landing'),
     path('home/', app.views.home, name='home'),
-    path('marketplace/', app.views.marketplace, name='marketplace'),
-    path('marketplace/add/', app.views.add, name='add'),
-    path('marketplace/view/<str:id>', app.views.view, name='view'),
-    path('marketplace/edit/<str:id>', app.views.edit, name='edit'),
-    path('reservations/', app.views.reservations, name='reservations'),
+    path('admin_page/', app.views.admin_page, name='admin_page')
+    path('admin_page/marketplace/', app.views.marketplace, name='marketplace'),
+    path('admin_page/marketplace/add/', app.views.add, name='add'),
+    path('admin_page/marketplace/view/<str:id>', app.views.view, name='view'),
+    path('admin_page/marketplace/edit/<str:id>', app.views.edit, name='edit'),
+    path('admin_page/reservations/', app.views.reservations, name='reservations'),
     path('register/', app.views.register, name='register'),
     path('login/', app.views.login, name='login'),
-    path('login/register', app.views.register, name='register'),
-    path('admin_page/', app.views.admin_page, name='admin_page')
+    path('login/register', app.views.register, name='register')
 ] 
