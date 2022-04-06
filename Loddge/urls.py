@@ -30,5 +30,6 @@ urlpatterns = [
     path('reservations/', app.views.reservations, name='reservations'),
     path('register/', app.views.register, name='register'),
     path('login/', app.views.login, name='login'),
+    path('login/register', app.views.register, name='register'),
     path('admin_page/', app.views.admin_page, name='admin_page')
 ] 
