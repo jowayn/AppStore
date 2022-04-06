@@ -33,6 +33,30 @@
         <img src="{% static 'app/images/loddge_logo.png' %}" width="60%"   alt="loddge logo"/><br/>
         <h1>Admin Dashboard</h1>
         <br>
+        <table border=1>
+            <thead>
+                <th>Reservation ID</th>
+                <th>User</th>
+                <th>Listing ID</th>
+                <th>Date Range</th>
+            </thead>
+            {% for listR in recordsR %}
+            <tr>
+                <td> {{ listR.0 }} </td>
+                <td> {{ listR.1 }} </td>
+                <td> {{ listR.2 }} </td>
+                <td> {{ listR.3 }} </td>
+                <td>
+                    <a href="editR/{{listR.0}}"><button>Edit Details</button></a>
+                    | 
+                    <form method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{listR.0}}"/>
+                    <button onclick="return confirm('Are you sure you want to delete Reservation ID: {{listR.0}}?');" type="submit" name="action" value="delete">Delete Reservation</button> 
+                  </form></td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </body>
 </html>
