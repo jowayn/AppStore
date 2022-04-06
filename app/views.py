@@ -52,7 +52,7 @@ def login(request):
     status = ""
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT user_id, user_password FROM user_base WHERE user_password = %s", 
+            cursor.execute("SELECT user_id, user_password FROM user_base WHERE user_id = %s", 
                            [request.POST["user_id"]])
             customers = cursor.fetchone()
         if customers == None:
@@ -73,12 +73,12 @@ def register(request):
     if request.POST:
         ## Check if userid is already in the table
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM provider WHERE id = %s", [request.POST['user']])
+            cursor.execute("SELECT * FROM user_base WHERE user_id = %s", [request.POST['user_id']])
             user = cursor.fetchone()
             ## No user with same id
             if user == None:
                 cursor.execute("INSERT INTO user_base VALUES (%s, %s, %s, %s, %s)", 
-                               [request.POST['email'],
+                               [request.POST['user_id'],
                                 request.POST['user_password'], 
                                 request.POST['first_name'],
                                 request.POST['last_name'] , 
