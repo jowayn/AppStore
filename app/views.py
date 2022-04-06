@@ -60,16 +60,20 @@ def dashboard(request):
     with connection.cursor() as cursor:
         cursor.execute(
             """
-            SELECT * 
-            FROM reservations r
-            ORDER BY r.reservation_id
+            SELECT l.listing_name,
+            SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue
+            FROM reservations r, listings l
+            WHERE r.listing_id = l.listing_id
+            GROUP BY l.listing_name
+            ORDER BY total_revenue DESC
+            LIMIT 10
             """
             ),
-        reservations = cursor.fetchall()
+        totalrev = cursor.fetchall()
 
-    result_dictR = {'recordsR': reservations}
+    result_dictRev = {'recordsRev': totalrev}
 
-    return render(request,'app/dashboard.html', result_dictR)
+    return render(request,'app/dashboard.html', result_dictRev)
 
 def admin_page(request):
     """Shows the admin page"""
