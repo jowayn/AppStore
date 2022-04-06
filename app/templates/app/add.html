@@ -11,8 +11,11 @@
 </head>
     
 <body>
+    <div class="container mt-5">
     <h2>Add New Listing</h2>
-    <a href="/">Back to Home</a>
+    <a href="/admin_page/marketplace/">
+        <button class="block">Back to Marketplace</button>
+    </a>
 
     <p style="color:red">{{ status|safe }}</p>
     <!-- Create a Form -->
@@ -146,5 +149,6 @@
         <br>
         <button type="submit" value="Add">Submit</button>
     </form>
+    </div>
 </body>
 </html>
