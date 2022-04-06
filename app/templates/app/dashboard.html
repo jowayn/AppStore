@@ -28,7 +28,7 @@
     }
     
     table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
     }
     
     div.a {
@@ -42,11 +42,12 @@
         <h1>Admin Dashboard</h1>
         <br>
         <br>
+        
         <h4> Top 10 Revenue-Generating Listings </h4>
-        <table border=1>
+        <table border=2>
             <thead>
                 <th>Listing Name</th>
-                <th>Total Revenus</th>
+                <th>Total Revenue</th>
             </thead>
             {% for listRev in recordsRev %}
             <tr>
@@ -56,6 +57,27 @@
             </tr>
             {% endfor %}
         </table>
+        
+        <br>
+        <br>
+        
+        <h4> Top 10 Revenue-Generating Neighbourhoods their Number of Listings </h4>
+        <table border=2>
+            <thead>
+                <th>Neighbourhood</th>
+                <th>Total Revenue</th>
+                <th>Number of Listings</th>
+            </thead>
+            {% for listRevL in recordsRevL %}
+            <tr>
+                <td> {{ listRevL.0 }} </td>
+                <td> {{ listRevL.1 }} </td>
+                <td> {{ listRevL.2 }} </td>
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        
     </div>
 </body>
 </html>
