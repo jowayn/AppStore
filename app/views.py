@@ -57,10 +57,14 @@ def login(request):
             customers = cursor.fetchone()
         if customers == None:
             status = "Login failed, no such user. Please create an account."
+        elif customers[0] == "admin@admin.com":
+            if customers[1] == request.POST["user_password"]:
+                status = "Login successful."
+                return redirect('admin')
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('marketplace')
+                return redirect('home')
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
@@ -88,6 +92,10 @@ def register(request):
                 status = 'User with ID %s already exists' % (request.POST['user'])
     context['status'] = status
     return render(request, "app/register.html", context)
+
+def admin(request):
+    """Shows the admin page"""
+    return render(request,'app/admin.html')
 
 def landing(request):
     """Shows the landing page"""
