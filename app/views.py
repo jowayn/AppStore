@@ -83,7 +83,7 @@ def dashboard(request):
             WHERE r.listing_id = l.listing_id
             GROUP BY l.neighbourhood
             ORDER BY total_revenue DESC;
-            LIMIT 10;
+            LIMIT 10
             """
             ),
         totalrevL = cursor.fetchall()
