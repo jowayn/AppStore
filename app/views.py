@@ -82,7 +82,7 @@ def dashboard(request):
             FROM reservations r, listings l
             WHERE r.listing_id = l.listing_id
             GROUP BY l.neighbourhood
-            ORDER BY total_revenue DESC;
+            ORDER BY total_revenue DESC
             LIMIT 10
             """
             ),
