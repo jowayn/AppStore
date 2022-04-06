@@ -77,7 +77,7 @@ def dashboard(request):
         cursor.execute(
             """
             SELECT l.neighbourhood,
-            SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue,
+                SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue,
             COUNT(*) as number_of_listings
             FROM reservations r, listings l
             WHERE r.listing_id = l.listing_id
@@ -93,20 +93,13 @@ def dashboard(request):
     with connection.cursor() as cursor:
         cursor.execute(
             """
-            SELECT TOP 10 l.owner_id,
-            SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue
-            FROM reservations r, listings l
-            WHERE r.listing_id = l.listing_id
-            GROUP BY l.owner_id
-            ORDER BY total_revenue DESC;
-            /* Displays the top 20% of owners by total revenue */
             SELECT l.owner_id,
-            SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue
+                SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue
             FROM reservations r, listings l
             WHERE r.listing_id = l.listing_id
             GROUP BY l.owner_id
             ORDER BY total_revenue DESC
-            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings)
+            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
             """
             ),
         totalO = cursor.fetchall()
