@@ -47,6 +47,58 @@ def register(request):
     return render(request, 'registration/register.html', context)
 """
 
+def login(request):
+    context = {}
+    status = ""
+    if request.POST:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT user_id, user_password FROM user_base WHERE user_id = %s", 
+                           [request.POST["user_id"]])
+            customers = cursor.fetchone()
+        if customers == None:
+            status = "Login failed, no such user. Please create an account."
+        elif customers[0] == "admin@admin.com":
+            if customers[1] == request.POST["user_password"]:
+                status = "Login successful."
+                return redirect('admin_page')
+            else:
+                status = "Login failed, wrong password."
+        else:
+            if customers[1] == request.POST["user_password"]:
+                status = "Login successful."
+                return redirect('home')
+            else:
+                status = "Login failed, wrong password."
+    context["status"] = status
+    return render(request,'app/login.html', context)
+
+def register(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+    if request.POST:
+        ## Check if userid is already in the table
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM user_base WHERE user_id = %s", [request.POST['user_id']])
+            user = cursor.fetchone()
+            ## No user with same id
+            if user == None:
+                cursor.execute("INSERT INTO user_base VALUES (%s, %s, %s, %s, %s)", 
+                               [request.POST['user_id'],
+                                request.POST['user_password'], 
+                                request.POST['first_name'],
+                                request.POST['last_name'] , 
+                                request.POST['phone_number']])
+                return redirect('login')    
+            else:
+                status = 'User with ID %s already exists' % (request.POST['user_id'])
+    context['status'] = status
+    return render(request, "app/register.html", context)
+
+def admin_page(request):
+    """Shows the admin page"""
+    return render(request,'app/admin_page.html')
+
 def landing(request):
     """Shows the landing page"""
     return render(request,'app/landing.html')

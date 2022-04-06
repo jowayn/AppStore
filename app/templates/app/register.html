@@ -1,0 +1,26 @@
+<html>
+<head>
+
+</head> 
+<body>
+    <a href="/">Back to Home</a>
+    <h1>Register</h1>
+    <div>
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_user_id" class="control-group"> <label for="user_id" class="control-label requiredField">
+        Email address<span class="asteriskField">*</span> </label> <div class="controls"> <input type="email" name="user_id" maxlength="64" class="textinput textInput" required="" id="user_id"> </div> </div> <div id="div_id_password" class="control-group"> <label for="user_password" class="control-label requiredField">
+        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="user_password" maxlength="64" class="textinput textInput" required="" id="user_password"> </div> </div> <div id="div_id_first_name" class="control-group"> <label for="first_name" class="control-label requiredField">
+        First Name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="first_name" maxlength="64" class="textinput textInput" required="" id="first_name"> </div> </div> <div id="div_id_last_name" class="control-group"> <label for="last_name" class="control-label requiredField">
+        Last Name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="last_name" maxlength="64" class="textinput textInput" required="" id="last_name"> </div> </div> <div id="div_id_phone_number" class="control-group"> <label for="phone_number" class="control-label requiredField">
+        Phone Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="phone_number" class="textinput textInput" required="" id="phone_number"> 
+        <button type="submit" value="register">Register</button>
+    </form>
+    </div>
+</body>
+</html>
+

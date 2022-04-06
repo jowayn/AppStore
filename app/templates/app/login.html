@@ -1,0 +1,22 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<a href="/">Back to Home</a>
+<h1>Login</h1>
+  <div>
+  <p style="color:red;font-weight:bold">{{ status|safe }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <label for="user">Username:</label>
+    <input type="text" id="user_id" name="user_id"><br><br>
+    <label for="user_pass">Password:</label>
+    <input type="password" id="user_password" name="user_password"><br><br>
+    <button type="submit" value="login">Login</button>
+  </form>
+  <p> Not a member yet? <a href="register">Register Here</a> </p>
+  </div>
+</body>
+</html>
