@@ -97,7 +97,7 @@ def dashboard(request):
                 SUM((upper(r.date_range) - lower(r.date_range)) * l.price) AS total_revenue
             FROM reservations r, listings l, user_base u
             WHERE r.listing_id = l.listing_id
-                AND l.owner_id = u.user.id
+                AND l.owner_id = u.user_id
             GROUP BY l.owner_id
             ORDER BY total_revenue DESC
             LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
