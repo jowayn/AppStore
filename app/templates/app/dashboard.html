@@ -85,12 +85,16 @@
         <table border=2>
             <thead>
                 <th>Owner ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Total Revenue</th>
             </thead>
             {% for listO in recordsO %}
             <tr>
                 <td> {{ listO.0 }} </td>
                 <td> {{ listO.1 }} </td>
+                <td> {{ listO.2 }} </td>
+                <td> {{ listO.3 }} </td>
                 <td>
             </tr>
             {% endfor %}
