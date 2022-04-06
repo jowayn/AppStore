@@ -50,7 +50,7 @@ def register(request):
     return render(request, "app/register.html", context)
 
 def dashboard(request):
-    """Shows the reservations table"""
+    """Shows the admin dashboard"""
     context = {}
     status = ''
 
