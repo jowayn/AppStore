@@ -1,7 +1,22 @@
-<html>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
 <body>
+    <div class="container mt-5">
     <h2>Details for {{list.1}} in {{list.2}}</h2>
-    <a href="/">Back to Home</a>
+        
+    <a href="/admin_page/marketplace/">
+        <button class="block">Back to Marketplace</button>
+    </a>
+        
     <br/><br/>
     <table style='text-align:left'>
         <tr>
@@ -75,52 +90,6 @@
             <td> {{ list.13 }} </td>
         </tr>
     </table>
+    </div>
 </body>
 </html>
-
-<!--
-<html>
-<body>
-    <h2>Details for {{cust.0}} {{cust.1}}</h2>
-    <a href="/">Back to home</a>
-    <br/><br/>
-    <table style='text-align:left'>
-        <tr>
-            <th>ID</th>
-            <td>:</td>
-            <td> {{ cust.5 }} </td>
-        </tr>
-        <tr>
-            <th>First name</th>
-            <td>:</td>
-            <td> {{ cust.0 }} </td>
-        </tr>
-        <tr>
-            <th>Last name</th>
-            <td>:</td>
-            <td> {{ cust.1 }} </td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>:</td>
-            <td> {{ cust.2 }} </td>
-        </tr>
-        <tr>
-            <th>Date of birth</th>
-            <td>:</td>
-            <td> {{ cust.3 }} </td>
-        </tr>
-        <tr>
-            <th>Since</th>
-            <td>:</td>
-            <td> {{ cust.4 }} </td>
-        </tr>
-        <tr>
-            <th>Country</th>
-            <td>:</td>
-            <td> {{ cust.6 }} </td>
-        </tr>
-    </table>
-</body>
-</html>
--->
