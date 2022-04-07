@@ -115,7 +115,7 @@ def dashboard(request):
             FROM reviews rev, reservations res, listings l
             WHERE rev.reservation_id = res.reservation_id
             AND res.listing_id = l.listing_id
-            GROUP BY l.listing_name
+            GROUP BY l.listing_name, l.listing_name
             ORDER BY average_review DESC
             LIMIT (SELECT COUNT(DISTINCT listing_name)*0.2 FROM listings)
             """
@@ -138,7 +138,7 @@ def dashboard(request):
         totalB = cursor.fetchall()
         result_dictB = {'recordsB': totalB}
 
-    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO, 'recordsA': totalA})
+    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO, 'recordsA': totalA, 'recordsB': totalB})
 
 def admin_page(request):
     """Shows the admin page"""
