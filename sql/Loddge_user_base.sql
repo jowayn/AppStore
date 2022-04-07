@@ -1,4 +1,4 @@
---INSERT INTO user_base(user_id,user_password,first_name,last_name,phone_number) VALUES ('admin@admin.com','thisisadmin','Admin','Admin',0123456789);
+INSERT INTO user_base(user_id,user_password,first_name,last_name,phone_number) VALUES ('admin@admin.com','thisisadmin','Admin','Admin',0123456789);
 INSERT INTO user_base(user_id,user_password,first_name,last_name,phone_number) VALUES ('clivett0@mit.edu','dWvymHWnx','Candace','Livett',6517861584);
 INSERT INTO user_base(user_id,user_password,first_name,last_name,phone_number) VALUES ('ocullen1@wikimedia.org','B1iGkLEp9DpO','Odetta','Cullen',5898550084);
 INSERT INTO user_base(user_id,user_password,first_name,last_name,phone_number) VALUES ('abenettini2@whitehouse.gov','pSKaYhjs9u','Agosto','Benettini',4363092571);
