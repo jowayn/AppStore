@@ -110,7 +110,7 @@ def dashboard(request):
     with connection.cursor() as cursor:
         cursor.execute(
             """
-            SELECT l.Listing_name,
+            SELECT l.listing_id, l.listing_name,
             AVG(rev.review)::NUMERIC(3,2) AS average_review
             FROM reviews rev, reservations res, listings l
             WHERE rev.reservation_id = res.reservation_id
