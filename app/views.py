@@ -20,7 +20,7 @@ def login(request):
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('home')
+                return redirect('home_user', request.POST["user_id"])
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
@@ -112,7 +112,7 @@ def admin_page(request):
     """Shows the admin page"""
     return render(request,'app/admin_page.html')
 
-def landing(request):
+def landing(request, id):
     """Shows the landing page"""
     return render(request,'app/landing.html')
 
@@ -254,7 +254,34 @@ def reservations(request):
 
         return render(request,'app/reservations.html', result_dictR)
 
+def home_user(request, id):
+    """Shows the reservations table"""
+    context = {}
+    status = ''
     
+    ## Delete reservation
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM reservations WHERE reservation_id = %s", [request.POST['idR']])
+    else:
+        context['status'] = status
+        ## Use sample query to get listings
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT * 
+                FROM reservations r
+                WHERE user_id = %s
+                ORDER BY r.reservation_id
+                """
+                , [id]),
+            reservations = cursor.fetchall()
+
+        result_dictR = {'recordsR': reservations}
+
+        return render(request,'app/home_user.html', result_dictR)
     
 
 def marketplace(request):
