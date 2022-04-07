@@ -307,13 +307,13 @@ def marketplace(request):
                     l.owner_id, l.total_occupancy, l.total_bedrooms
                 FROM
                     listings l
+                WHERE neighbourhood_group = %s
+                    AND total_occupancy >= %s
                 LEFT JOIN
                 (SELECT res.listing_id,
                 AVG(rev.review)::NUMERIC(3,2) AS average_review
                 FROM reviews rev, reservations res
                 WHERE rev.reservation_id = res.reservation_id
-                AND neighbourhood_group = %s
-                AND total_occupancy >= %s
                 GROUP BY res.listing_id) AS a
                 ON l.listing_id = a.listing_id
                 ORDER BY l.listing_id
