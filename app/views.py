@@ -313,7 +313,7 @@ def marketplace(request):
                 FROM reviews rev, reservations res
                 WHERE rev.reservation_id = res.reservation_id
                 AND neighbourhood_group = %s
-                AND total occupancy >= %s
+                AND total_occupancy >= %s
                 GROUP BY res.listing_id) AS a
                 ON l.listing_id = a.listing_id
                 ORDER BY l.listing_id
