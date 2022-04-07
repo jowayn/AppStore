@@ -209,6 +209,30 @@ def add(request):
  
     return render(request, "app/add.html", context)
 
+def addreservation(request):
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [request.POST['reservation_id']])
+            customer = cursor.fetchone()
+            ## No listing with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO reservations VALUES (%s, %s, %s, %s)"
+                        , [request.POST['reservation_id'], request.POST['user_id'], request.POST['listing_id'],
+                           request.POST['date_range'] ])
+                return redirect('index')    
+            else:
+                status = 'Reservation with ID %s already exists' % (request.POST['reservation_id'])
+                
+    context['status'] = status
+ 
+    return render(request, "app/addreservation.html", context)
+
 # Create your views here.
 def edit(request, id):
     """Shows edit page"""
