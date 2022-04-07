@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.landing, name='landing'),
     path('home/', app.views.home, name='home'),
+    path('home_user/', app.views.home_user, name='home_user'),
     path('admin_page/', app.views.admin_page, name='admin_page'),
     path('admin_page/marketplace/', app.views.marketplace, name='marketplace'),
     path('admin_page/marketplace/add/', app.views.add, name='add'),
