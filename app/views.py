@@ -132,13 +132,13 @@ def dashboard(request):
             WHERE r.user_id = u.user_id
             GROUP BY r.user_id, u.first_name, u.last_name
             ORDER BY total_reservations DESC
-            LIMIT(SELECT COUNT(DISTINCT user_id)*0.2 FROM reservations);
+            LIMIT(SELECT COUNT(DISTINCT user_id)*0.2 FROM reservations)
             """
             ),
         totalB = cursor.fetchall()
         result_dictB = {'recordsB': totalB}
         
-     """Displays the Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
+    """Displays the Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -147,7 +147,7 @@ def dashboard(request):
             WHERE l.owner_id = u.user_id
             GROUP BY l.owner_id, u.first_name, u.last_name
             ORDER BY total_listings DESC
-            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
+            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings)
             """
             ),
         totalC = cursor.fetchall()
