@@ -72,12 +72,6 @@
             <td> {{ listR.1 }} </td>
             <td> {{ listR.2 }} </td>
             <td> {{ listR.3 }} </td>
-            <td>
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="idR" value="{{listR.0}}"/>
-                <button onclick="return confirm('Are you sure you want to cancel Reservation ID: {{listR.0}}?');" type="submit" name="action" value="delete">Cancel Reservation</button> 
-              </form></td>
         </tr>
         {% endfor %}
     </table>
