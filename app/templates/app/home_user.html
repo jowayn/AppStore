@@ -44,26 +44,7 @@
     <a href="/admin_page/">
         <button class="block">Back to Admin Page</button>
     </a>
-    
-    <br>
-    <br>
-    <h4> Search for a Reservation </h4>
-      <form method="POST">
-        <!-- Security token by Django -->
-        {% csrf_token %}
-        <!-- form -->
 
-        <div id="div_id_neighbourhood_group" class="control-group"> <label for="id_neighbourhood_group">
-        Neighbourhood Group<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="neighbourhood_group" maxlength="64" class="textinput textInput" required="" id="id_neighbourhood_group"> </div> </div>
-        <br>
-        <div id="div_id_total_occupancy" class="control-group"> <label for="id_total_occupancy">
-        Total Occupancy<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" min="1" name="total_occupancy" maxlength="64" class="textinput textInput" required="" id="id_total_occupancy"> </div> </div>
-        
-        <br>
-        <a href="">
-            <button type="submit" name=action value="search">Search</button>
-        </a>
-    </form>
   
     <br>
     <br>
@@ -74,7 +55,7 @@
     
     <br>
   
-    <h4>Search Results: </h4>
+    <h4>Your Reservations: </h4>
     <br>
     <table border=1>
         <thead>
