@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 import app.views
-
+/home_user/marketplace_user/add
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('home/', app.views.home, name='home'),
     path(r'home_user/<str:id>', app.views.home_user, name='home_user'),
     path('home_user/marketplace_user/', app.views.marketplace_user, name='marketplace_user'),
+    path('home_user/marketplace_user/add/', app.views.add, name='add'),
     path('home_user/marketplace_user/view/<str:id>', app.views.view, name='view'),
     path('home_user/marketplace_user/addreservation/', app.views.addreservation, name='addreservation'),
     path('admin_page/', app.views.admin_page, name='admin_page'),
