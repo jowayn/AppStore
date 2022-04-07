@@ -99,13 +99,8 @@
             <td> {{ list.8 }} </td>
             <td> {{ list.9 }} </td>
             <td>
-                <a href="view/{{list.0}}"><button>Details</button></a> | 
-                <a href="edit/{{list.0}}"><button>Edit</button></a>
-                | 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{list.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete Listing ID: {{list.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+                <a href="view/{{list.0}}"><button>Details</button></a>
+                
               </form></td>
         </tr>
         {% endfor %}
