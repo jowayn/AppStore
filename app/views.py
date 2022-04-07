@@ -253,7 +253,7 @@ def addreservation(request):
                 cursor.execute("INSERT INTO reservations VALUES (%s, %s, %s, %s)"
                         , [request.POST['reservation_id'], request.POST['user_id'], request.POST['listing_id'],
                            request.POST['date_range'] ])
-                return redirect('addreservations')    
+                return redirect('addreservation')    
             else:
                 status = 'Reservation with ID %s already exists' % (request.POST['reservation_id'])
                 
