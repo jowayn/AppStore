@@ -233,17 +233,19 @@ def addreservation(request):
  
     return render(request, "app/addreservation.html", context)
 
-def addreservation_user(request):
+def addreservation_user (request):
     context = {}
     status = ''
 
     if request.POST:
         ## Check if already in the table
         with connection.cursor() as cursor:
+
             cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [request.POST['reservation_id']])
-            listing = cursor.fetchone()
+            customer = cursor.fetchone()
             ## No listing with same id
-            if listing == None:
+            if customer == None:
+                ##TODO: date validation
                 cursor.execute("INSERT INTO reservations VALUES (%s, %s, %s, %s)"
                         , [request.POST['reservation_id'], request.POST['user_id'], request.POST['listing_id'],
                            request.POST['date_range'] ])
