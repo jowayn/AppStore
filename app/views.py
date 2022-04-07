@@ -217,6 +217,22 @@ def reservations(request):
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
                 cursor.execute("DELETE FROM reservations WHERE reservation_id = %s", [request.POST['idR']])
+         
+            context['status'] = status
+            ## Use sample query to get listings
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """
+                    SELECT * 
+                    FROM reservations r
+                    ORDER BY r.reservation_id
+                    """
+                    ),
+                reservations = cursor.fetchall()
+
+            result_dictR = {'recordsR': reservations}
+
+            return render(request,'app/reservations.html', result_dictR)
     
     if request.POST:
         if request.POST['action'] == 'search':
