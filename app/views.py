@@ -14,13 +14,13 @@ def login(request):
         elif customers[0] == "admin@admin.com":
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('admin_page')
+                return redirect('admin_page/request.POST["user_id"]')
             else:
                 status = "Login failed, wrong password."
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('home_user', request.POST["user_id"])
+                return redirect('home_user')
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
