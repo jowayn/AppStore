@@ -315,7 +315,7 @@ def marketplace(request):
                 WHERE rev.reservation_id = res.reservation_id
                 GROUP BY res.listing_id) AS a
                 ON l.listing_id = a.listing_id
-                ORDER BY l.listing_id)
+                ORDER BY l.listing_id) AS b
                 WHERE neighbourhood_group = %s
                     AND total_occupancy >= %s
                 """,
