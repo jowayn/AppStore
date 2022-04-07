@@ -303,7 +303,7 @@ def marketplace(request):
                 SELECT * 
                 FROM  listings l
                 WHERE neighbourhood_group = %s 
-                AND total_occupancy = %s 
+                AND total_occupancy >= %s 
                 ORDER BY l.listing_id
                 """,
                 [
@@ -338,12 +338,6 @@ def marketplace_user(request):
     context = {}
     status = ''
 
-    ## Delete listing
-    if request.POST:
-        if request.POST['action'] == 'delete':
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM listings WHERE listing_id = %s", [request.POST['id']])
-
     if request.POST:
         if request.POST['action'] == 'search':
             with connection.cursor() as cursor:
@@ -352,7 +346,7 @@ def marketplace_user(request):
                 SELECT * 
                 FROM  listings l
                 WHERE neighbourhood_group = %s 
-                AND total_occupancy = %s 
+                AND total_occupancy >= %s 
                 ORDER BY l.listing_id
                 """,
                 [
@@ -363,7 +357,7 @@ def marketplace_user(request):
 
             result_dict = {'records': listings}
 
-            return render(request,'app/marketplace.html', result_dict)
+            return render(request,'app/marketplace_user.html', result_dict)
     else:
         context['status'] = status
         ## Use sample query to get listings
