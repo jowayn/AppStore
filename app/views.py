@@ -20,7 +20,7 @@ def login(request):
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('home')
+                return redirect('home_user', id = request.POST["user_id"])
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
@@ -254,7 +254,34 @@ def reservations(request):
 
         return render(request,'app/reservations.html', result_dictR)
 
+def home_user(request, id):
+    """Shows the home page for each user"""
+    context = {}
+    status = ''
     
+    ## Delete reservation
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM reservations WHERE reservation_id = %s", [request.POST['idR']])
+    else:
+        context['status'] = status
+        ## Use sample query to get listings
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT * 
+                FROM reservations r
+                WHERE user_id = %s
+                ORDER BY r.reservation_id
+                """
+                , [id]),
+            reservations = cursor.fetchall()
+
+        result_dictR = {'recordsR': reservations}
+
+        return render(request,'app/home_user.html', result_dictR)
     
 
 def marketplace(request):
@@ -276,7 +303,7 @@ def marketplace(request):
                 SELECT * 
                 FROM  listings l
                 WHERE neighbourhood_group = %s 
-                AND total_occupancy = %s 
+                AND total_occupancy >= %s 
                 ORDER BY l.listing_id
                 """,
                 [
@@ -305,3 +332,46 @@ def marketplace(request):
         result_dict = {'records': listings}
 
         return render(request,'app/marketplace.html', result_dict)
+    
+def marketplace_user(request):
+    """Shows the listings table"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        if request.POST['action'] == 'search':
+            with connection.cursor() as cursor:
+                cursor.execute(
+                """
+                SELECT * 
+                FROM  listings l
+                WHERE neighbourhood_group = %s 
+                AND total_occupancy >= %s 
+                ORDER BY l.listing_id
+                """,
+                [
+                    request.POST['neighbourhood_group'],
+                    request.POST['total_occupancy']
+                ])                
+                listings = cursor.fetchall()
+
+            result_dict = {'records': listings}
+
+            return render(request,'app/marketplace_user.html', result_dict)
+    else:
+        context['status'] = status
+        ## Use sample query to get listings
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT * 
+                FROM listings l
+                ORDER BY l.listing_id
+                """
+                ),
+            listings = cursor.fetchall()
+
+        result_dict = {'records': listings}
+
+        return render(request,'app/marketplace_user.html', result_dict)
