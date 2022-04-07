@@ -127,6 +127,28 @@
         <br>
         <br>
         
+        <h4> Top 20% of Listing Owners with the Highest Number of Reservations under their Listings </h4>
+        <table border=2>
+            <thead>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Number of Reservations</th>
+            </thead>
+            {% for listB in recordsB %}
+            <tr>
+                <td> {{ listB.0 }} </td>
+                <td> {{ listB.1 }} </td>
+                <td> {{ listB.2 }} </td>
+                <td> {{ listB.3 }} </td>
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <br>
+        <br>
+        
     </div>
 </body>
 </html>
