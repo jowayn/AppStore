@@ -100,7 +100,7 @@ def dashboard(request):
                 AND l.owner_id = u.user_id
             GROUP BY l.owner_id, u.first_name, u.last_name
             ORDER BY total_revenue DESC
-            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
+            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings)
             """
             ),
         totalO = cursor.fetchall()
@@ -117,11 +117,26 @@ def dashboard(request):
             AND res.listing_id = l.listing_id
             GROUP BY l.listing_name
             ORDER BY average_review DESC
-            LIMIT (SELECT COUNT(DISTINCT listing_name)*0.2 FROM listings);
+            LIMIT (SELECT COUNT(DISTINCT listing_name)*0.2 FROM listings)
             """
             ),
         totalA = cursor.fetchall()
         result_dictA = {'recordsA': totalA}
+        
+    """Displays the Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT r.user_id, u.first_name, u.last_name, COUNT(*) AS total_reservations
+            FROM reservations r, user_base u
+            WHERE r.user_id = u.user_id
+            GROUP BY r.user_id, u.first_name, u.last_name
+            ORDER BY total_reservations DESC
+            LIMIT(SELECT COUNT(DISTINCT user_id)*0.2 FROM reservations);
+            """
+            ),
+        totalB = cursor.fetchall()
+        result_dictB = {'recordsB': totalB}
 
     return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO, 'recordsA': totalA})
 
