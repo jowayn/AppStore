@@ -201,7 +201,7 @@ def add(request):
                            request.POST['room_type'] , request.POST['price'], request.POST['owner_id'], request.POST['total_occupancy'],
                            request.POST['total_bedrooms'] , request.POST['has_internet'], request.POST['has_aircon'], request.POST['has_kitchen'],
                            request.POST['has_heater'] ])
-                return redirect('index')    
+                return redirect('marketplace')    
             else:
                 status = 'Listing with ID %s already exists' % (request.POST['listing_id'])
                 
@@ -214,7 +214,7 @@ def addreservation(request):
     status = ''
 
     if request.POST:
-        ## Check if customerid is already in the table
+        ## Check if already in the table
         with connection.cursor() as cursor:
 
             cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [request.POST['reservation_id']])
@@ -238,14 +238,12 @@ def addreservation_user(request):
     status = ''
 
     if request.POST:
-        ## Check if customerid is already in the table
+        ## Check if already in the table
         with connection.cursor() as cursor:
-
             cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [request.POST['reservation_id']])
-            customer = cursor.fetchone()
+            listing = cursor.fetchone()
             ## No listing with same id
-            if customer == None:
-                ##TODO: date validation
+            if listing == None:
                 cursor.execute("INSERT INTO reservations VALUES (%s, %s, %s, %s)"
                         , [request.POST['reservation_id'], request.POST['user_id'], request.POST['listing_id'],
                            request.POST['date_range'] ])
