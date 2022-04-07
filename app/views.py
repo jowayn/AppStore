@@ -336,7 +336,7 @@ def marketplace(request):
                 WHERE rev.reservation_id = res.reservation_id
                 GROUP BY res.listing_id) AS a
                 ON l.listing_id = a.listing_id
-                ORDER BY average_review DESC
+                ORDER BY l.listing_id DESC
                 """
                 ),
             listings = cursor.fetchall()
