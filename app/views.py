@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db import connection
+from .models import Element
 
 def login(request):
     context = {}
@@ -20,7 +21,8 @@ def login(request):
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('home_user', id = request.POST["user_id"])
+                element = Element.object.get(pk=request.POST["user_id"])
+                return redirect('home_user', id = element.id)
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
