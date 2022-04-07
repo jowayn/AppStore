@@ -255,7 +255,7 @@ def reservations(request):
         return render(request,'app/reservations.html', result_dictR)
 
 def home_user(request, id):
-    """Shows the reservations table"""
+    """Shows the home page for each user"""
     context = {}
     status = ''
     
