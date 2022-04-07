@@ -342,7 +342,7 @@ def reservations(request):
                 [
                     request.POST['reservation_id']
                 ])                
-                listings = cursor.fetchall()
+                reservations = cursor.fetchall()
 
             result_dictR = {'recordsR': reservations}
 
