@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 import app.views
-/home_user/marketplace_user/add
 
 urlpatterns = [
     path('admin/', admin.site.urls),
