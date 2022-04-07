@@ -300,11 +300,21 @@ def marketplace(request):
             with connection.cursor() as cursor:
                 cursor.execute(
                 """
-                SELECT * 
-                FROM  listings l
-                WHERE neighbourhood_group = %s 
-                AND total_occupancy >= %s 
-                ORDER BY l.listing_id
+                SELECT l.listing_id,
+                l.listing_name,
+                l.neighbourhood, l.neighbourhood_group, l.address, l.room_type,
+                l.price, CASE WHEN a.average_review is NULL THEN 0 ELSE a.average_review END,
+                l.owner_id, l.total_occupancy, l.total_bedrooms
+                FROM
+                listings l
+                LEFT JOIN
+                (SELECT res.listing_id,
+                AVG(rev.review)::NUMERIC(3,2) AS average_review
+                FROM reviews rev, reservations res
+                WHERE rev.reservation_id = res.reservation_id
+                GROUP BY res.listing_id) AS a
+                ON l.listing_id = a.listing_id
+                ORDER BY average_review DESC
                 """,
                 [
                     request.POST['neighbourhood_group'],
