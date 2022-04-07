@@ -20,7 +20,7 @@ def login(request):
         else:
             if customers[1] == request.POST["user_password"]:
                 status = "Login successful."
-                return redirect('home_user', id = request.POST["user_i)
+                return redirect('home_user', id = request.POST["user_id"])
             else:
                 status = "Login failed, wrong password."
     context["status"] = status
