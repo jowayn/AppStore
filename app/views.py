@@ -294,9 +294,9 @@ def marketplace(request):
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
                 cursor.execute("DELETE FROM listings WHERE listing_id = %s", [request.POST['id']])
-                    context['status'] = status
+            
+            context['status'] = status
             ## Use sample query to get listings
-
             with connection.cursor() as cursor:
                 cursor.execute(
                     """
