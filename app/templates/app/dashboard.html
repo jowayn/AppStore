@@ -85,7 +85,7 @@
         <br>
         <br>
         
-        <h4> Top 20% of Owners with the Greatest Revenues </h4>
+        <h4> Top 20% of Listing Owners with the Greatest Revenues </h4>
         <table border=2>
             <thead>
                 <th>Owner ID</th>
@@ -110,6 +110,7 @@
         <h4> Top 20% of Listings by Average Review </h4>
         <table border=2>
             <thead>
+                <th>Listing ID</th>
                 <th>Listing Name</th>
                 <th>Average Review</th>
             </thead>
@@ -117,6 +118,7 @@
             <tr>
                 <td> {{ listA.0 }} </td>
                 <td> {{ listA.1 }} </td>
+                <td> {{ listA.2 }} </td>
                 <td>
             </tr>
             {% endfor %}
