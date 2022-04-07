@@ -105,8 +105,25 @@ def dashboard(request):
             ),
         totalO = cursor.fetchall()
         result_dictO = {'recordsO': totalO}
+        
+    """Displays the top 20% of Listings by Average Review"""
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT l.Listing_name,
+            AVG(rev.review)::NUMERIC(3,2) AS average_review
+            FROM reviews rev, reservations res, listings l
+            WHERE rev.reservation_id = res.reservation_id
+            AND res.listing_id = l.listing_id
+            GROUP BY l.listing_name
+            ORDER BY average_review DESC
+            LIMIT (SELECT COUNT(DISTINCT listing_name)*0.2 FROM listings);
+            """
+            ),
+        totalA = cursor.fetchall()
+        result_dictA = {'recordsA': totalA}
 
-    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO})
+    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO, 'recordsA': totalA})
 
 def admin_page(request):
     """Shows the admin page"""
