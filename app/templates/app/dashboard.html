@@ -107,6 +107,24 @@
         <br>
         <br>
         
+        <h4> Top 20% of Listings by Average Review </h4>
+        <table border=2>
+            <thead>
+                <th>Listing Name</th>
+                <th>Average Review</th>
+            </thead>
+            {% for listA in recordsA %}
+            <tr>
+                <td> {{ listA.0 }} </td>
+                <td> {{ listA.1 }} </td>
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <br>
+        <br>
+        
     </div>
 </body>
 </html>
