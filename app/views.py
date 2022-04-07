@@ -112,7 +112,7 @@ def admin_page(request):
     """Shows the admin page"""
     return render(request,'app/admin_page.html')
 
-def landing(request, id):
+def landing(request):
     """Shows the landing page"""
     return render(request,'app/landing.html')
 
