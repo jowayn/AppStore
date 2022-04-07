@@ -123,7 +123,7 @@ def dashboard(request):
         totalA = cursor.fetchall()
         result_dictA = {'recordsA': totalA}
         
-    """Displays the Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
+    """Displays the Top 20% of Users who have made the Highest Number of Reservations"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -137,8 +137,23 @@ def dashboard(request):
             ),
         totalB = cursor.fetchall()
         result_dictB = {'recordsB': totalB}
+        
+     """Displays the Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT l.owner_id, u.first_name, u.last_name, COUNT(*) AS total_listings
+            FROM listings l, user_base u
+            WHERE l.owner_id = u.user_id
+            GROUP BY l.owner_id, u.first_name, u.last_name
+            ORDER BY total_listings DESC
+            LIMIT (SELECT COUNT(DISTINCT owner_id)*0.2 FROM listings);
+            """
+            ),
+        totalC = cursor.fetchall()
+        result_dictC = {'recordsC': totalC}
 
-    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO, 'recordsA': totalA, 'recordsB': totalB})
+    return render(request,'app/dashboard.html', {'recordsRev': totalrev, 'recordsRevL': totalrevL, 'recordsO': totalO, 'recordsA': totalA, 'recordsB': totalB, 'recordsC': totalC})
 
 def admin_page(request):
     """Shows the admin page"""
