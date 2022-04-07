@@ -332,3 +332,52 @@ def marketplace(request):
         result_dict = {'records': listings}
 
         return render(request,'app/marketplace.html', result_dict)
+    
+    def marketplace_user(request):
+    """Shows the listings table"""
+    context = {}
+    status = ''
+    
+    ## Delete listing
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM listings WHERE listing_id = %s", [request.POST['id']])
+    
+    if request.POST:
+        if request.POST['action'] == 'search':
+            with connection.cursor() as cursor:
+                cursor.execute(
+                """
+                SELECT * 
+                FROM  listings l
+                WHERE neighbourhood_group = %s 
+                AND total_occupancy = %s 
+                ORDER BY l.listing_id
+                """,
+                [
+                    request.POST['neighbourhood_group'],
+                    request.POST['total_occupancy']
+                ])                
+                listings = cursor.fetchall()
+
+            result_dict = {'records': listings}
+
+            return render(request,'app/marketplace.html', result_dict)
+    else:
+        context['status'] = status
+        ## Use sample query to get listings
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT * 
+                FROM listings l
+                ORDER BY l.listing_id
+                """
+                ),
+            listings = cursor.fetchall()
+
+        result_dict = {'records': listings}
+
+        return render(request,'app/marketplace_user.html', result_dict)
