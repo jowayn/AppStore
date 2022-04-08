@@ -217,7 +217,6 @@ def reservations(request):
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
                 cursor.execute("DELETE FROM reservations WHERE reservation_id = %s", [request.POST['idR']])
-    
     if request.POST:
         if request.POST['action'] == 'search':
             with connection.cursor() as cursor:
