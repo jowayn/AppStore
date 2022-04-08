@@ -186,7 +186,7 @@ def view_reservations(request, id):
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM reservations WHERE listing_id = %s", [id])
-        listing = cursor.fetchone()
+        listing = cursor.fetchall()
     result_dict = {'records': listing}
 
     return render(request,'app/view_reservations.html',result_dict)
