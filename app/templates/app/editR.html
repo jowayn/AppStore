@@ -53,16 +53,16 @@
         <!-- form -->
 
             <div id="div_id_reservation_id" class="control-group"> <label for="id_reservation_id" class="control-label requiredField">
-            Reservation ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="reservation_id" maxlength="64" class="textinput textInput" required="" id="id_reservation_id"> </div> </div> 
+            Reservation ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="reservation_id" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_reservation_id"> </div> </div> 
 
             <div id="div_id_user_id" class="control-group"> <label for="id_user_id" class="control-label requiredField">
-            User ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="numer" name="user_id" maxlength="64" class="textinput textInput" required="" id="id_user_id"> </div> </div> 
+            User ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="numer" name="user_id" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_user_id"> </div> </div> 
 
             <div id="div_id_listing_id" class="control-group"> <label for="id_listing_id" class="control-label requiredField">
-            Listing ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="listing_id" maxlength="64" class="textinput textInput" required="" id="id_listing_id"> </div> </div> 
+            Listing ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="listing_id" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_listing_id"> </div> </div> 
 
             <div id="div_id_date_range" class="control-group"> <label for="id_neighbourhood_group" class="control-label requiredField">
-            Date Range<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="date_range" maxlength="64" class="textinput textInput" required="" id="id_date_range"> </div> </div>
+            Date Range<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="date_range" value="{{obj.3}}" maxlength="64" class="textinput textInput" required="" id="id_date_range"> </div> </div>
 
         <br>
         <button type="submit" value="Update">Update</button>
