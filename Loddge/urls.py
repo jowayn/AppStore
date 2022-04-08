@@ -27,6 +27,7 @@ urlpatterns = [
     path('home_user/marketplace_user/add_user/', app.views.add_user, name='add_user'),
     path('home_user/marketplace_user/view/<str:id>', app.views.view, name='view'),
     path('home_user/marketplace_user/addreservation/', app.views.addreservation, name='addreservation'),
+    path('home_user/marketplace_user/view_reservation/<str:id>', app.views.view_reservation, name='view_reservation'),
     path('admin_page/', app.views.admin_page, name='admin_page'),
     path('admin_page/marketplace/', app.views.marketplace, name='marketplace'),
     path('admin_page/marketplace/add/', app.views.add, name='add'),
