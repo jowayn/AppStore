@@ -13,11 +13,8 @@ CREATE TABLE IF NOT EXISTS listings(
 	neighbourhood VARCHAR(64) NOT NULL,
 	neighbourhood_group VARCHAR(64) NOT NULL,
 	address VARCHAR(128) NOT NULL,
-/*	latitude NUMERIC NOT NULL CHECK(latitude >= -90 AND latitude <= 90),
-	longitude NUMERIC NOT NULL CHECK(longitude >= -180 AND longitude <= 180), */
 	room_type VARCHAR(64) NOT NULL,
 	price MONEY NOT NULL,
-/*	publish_date date NOT NULL, */
 	owner_id VARCHAR(64) REFERENCES user_base(user_id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	total_occupancy INT NOT NULL,
