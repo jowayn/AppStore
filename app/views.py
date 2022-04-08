@@ -342,7 +342,7 @@ def edit(request, id):
     return render(request, "app/edit.html", context)
 
 def editR(request, id):
-    """Shows edit page"""
+    """Shows edit page for reservations"""
 
     # dictionary for initial data with
     # field names as keys
@@ -350,7 +350,7 @@ def editR(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM reservation WHERE listing_id = %s", [id])
+        cursor.execute("SELECT * FROM reservations WHERE listing_id = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -374,7 +374,7 @@ def editR(request, id):
                request.POST['date_range'],
                id ])
             status = 'Reservation edited successfully!'
-            cursor.execute("SELECT * FROM listings WHERE listing_id = %s", [id])
+            cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [id])
             obj = cursor.fetchone()
 
     context["obj"] = obj
