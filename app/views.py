@@ -350,7 +350,7 @@ def editR(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM reservations WHERE listing_id = %s", [id])
+        cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -376,10 +376,10 @@ def editR(request, id):
             status = 'Reservation edited successfully!'
             cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [id])
             obj = cursor.fetchone()
-
+            
     context["obj"] = obj
     context["status"] = status
- 
+    
     return render(request, "app/editR.html", context)
 
 def reservations(request):
