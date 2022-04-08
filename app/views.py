@@ -294,33 +294,7 @@ def marketplace(request):
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
                 cursor.execute("DELETE FROM listings WHERE listing_id = %s", [request.POST['id']])
-            context['status'] = status
-        ## Use sample query to get listings
-        with connection.cursor() as cursor:
-            cursor.execute(
-                """
-                SELECT l.listing_id,
-                l.listing_name,
-                l.neighbourhood, l.neighbourhood_group, l.address, l.room_type,
-                l.price, CASE WHEN a.average_review is NULL THEN 0 ELSE a.average_review END,
-                l.owner_id, l.total_occupancy, l.total_bedrooms
-                FROM
-                listings l
-                LEFT JOIN
-                (SELECT res.listing_id,
-                AVG(rev.review)::NUMERIC(3,2) AS average_review
-                FROM reviews rev, reservations res
-                WHERE rev.reservation_id = res.reservation_id
-                GROUP BY res.listing_id) AS a
-                ON l.listing_id = a.listing_id
-                ORDER BY l.listing_id DESC
-                """
-                ),
-            listings = cursor.fetchall()
-        result_dict = {'records': listings}
 
-        return render(request,'app/marketplace.html', result_dict)
-    
     if request.POST:
         if request.POST['action'] == 'search':
             with connection.cursor() as cursor:
