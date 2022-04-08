@@ -56,7 +56,7 @@ def dashboard(request):
 
     context['status'] = status
     ## Use sample query to get listings
-    """Displays the total revenue for each listing"""
+    """Top 10 Revenue-Generating Listings"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -72,7 +72,7 @@ def dashboard(request):
         totalrev = cursor.fetchall()
         result_dictRev = {'recordsRev': totalrev}
         
-    """Displays the total revenue for each neighbourhood, along with number of listings in that neighbourhood"""
+    """Top 10 Revenue-Generating Neighbourhoods and their Number of Listings"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -89,7 +89,7 @@ def dashboard(request):
         totalrevL = cursor.fetchall()
         result_dictRevL = {'recordsRevL': totalrevL}
         
-    """Displays the top 20% of Owners by Total Revenue"""
+    """Top 20% of Owners with the Greatest Revenues"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -106,7 +106,7 @@ def dashboard(request):
         totalO = cursor.fetchall()
         result_dictO = {'recordsO': totalO}
         
-    """Displays the top 20% of Listings by Average Review"""
+    """Top 20% of Listings by Average Review"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -123,7 +123,7 @@ def dashboard(request):
         totalA = cursor.fetchall()
         result_dictA = {'recordsA': totalA}
         
-    """Displays the Top 20% of Users who have made the Highest Number of Reservations"""
+    """Top 20% of Users with the Highest Number of Reservations"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
@@ -138,7 +138,7 @@ def dashboard(request):
         totalB = cursor.fetchall()
         result_dictB = {'recordsB': totalB}
         
-    """Displays the Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
+    """Top 20% of Listing Owners with the Highest Number of Reservations under their Listings"""
     with connection.cursor() as cursor:
         cursor.execute(
             """
