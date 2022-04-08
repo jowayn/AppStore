@@ -180,6 +180,17 @@ def view(request, id):
 
     return render(request,'app/view.html',result_dict)
 
+def view_reservations(request, id):
+    """Shows reservations for specified listing"""
+    
+    ## Use raw query to get a customer
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM reservations WHERE listing_id = %s", [id])
+        listing = cursor.fetchall()
+    result_dict = {'records': listing}
+
+    return render(request,'app/view_reservations.html',result_dict)
+
 # Create your views here.
 def add(request):
     """Shows add page"""
