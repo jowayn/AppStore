@@ -18,20 +18,22 @@ from django.urls import path, include
 
 import app.views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.landing, name='landing'),
     path('home/', app.views.home, name='home'),
-    path(r'home_user/(?P<id>\d+)/$', app.views.home_user, name='home_user'),
+    path(r'home_user/<str:id>', app.views.home_user, name='home_user'),
     path('home_user/marketplace_user/', app.views.marketplace_user, name='marketplace_user'),
+    path('home_user/marketplace_user/add_user/', app.views.add_user, name='add_user'),
     path('home_user/marketplace_user/view/<str:id>', app.views.view, name='view'),
+    path('home_user/marketplace_user/addreservation/', app.views.addreservation, name='addreservation'),
     path('admin_page/', app.views.admin_page, name='admin_page'),
     path('admin_page/marketplace/', app.views.marketplace, name='marketplace'),
     path('admin_page/marketplace/add/', app.views.add, name='add'),
     path('admin_page/marketplace/view/<str:id>', app.views.view, name='view'),
     path('admin_page/marketplace/edit/<str:id>', app.views.edit, name='edit'),
     path('admin_page/reservations/', app.views.reservations, name='reservations'),
+    path('admin_page/reservations/addreservation/', app.views.addreservation, name='addreservation'),
     path('admin_page/dashboard/', app.views.dashboard, name='dashboard'),
     path('register/', app.views.register, name='register'),
     path('login/', app.views.login, name='login'),

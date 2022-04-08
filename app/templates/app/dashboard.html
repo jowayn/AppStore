@@ -85,7 +85,7 @@
         <br>
         <br>
         
-        <h4> Top 20% of Owners with the Greatest Revenues </h4>
+        <h4> Top 20% of Listing Owners with the Greatest Revenues </h4>
         <table border=2>
             <thead>
                 <th>Owner ID</th>
@@ -99,6 +99,70 @@
                 <td> {{ listO.1 }} </td>
                 <td> {{ listO.2 }} </td>
                 <td> {{ listO.3 }} </td>
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <br>
+        <br>
+        
+        <h4> Top 20% of Listings by Average Review </h4>
+        <table border=2>
+            <thead>
+                <th>Listing ID</th>
+                <th>Listing Name</th>
+                <th>Average Review</th>
+            </thead>
+            {% for listA in recordsA %}
+            <tr>
+                <td> {{ listA.0 }} </td>
+                <td> {{ listA.1 }} </td>
+                <td> {{ listA.2 }} </td>
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <br>
+        <br>
+        
+        <h4> Top 20% of Users with the Highest Number of Reservations </h4>
+        <table border=2>
+            <thead>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Number of Reservations</th>
+            </thead>
+            {% for listB in recordsB %}
+            <tr>
+                <td> {{ listB.0 }} </td>
+                <td> {{ listB.1 }} </td>
+                <td> {{ listB.2 }} </td>
+                <td> {{ listB.3 }} </td>
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <br>
+        <br>
+        
+        <h4> Top 20% of Listing Owners with the Highest Number of Reservations under their Listings </h4>
+        <table border=2>
+            <thead>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Number of Reservations</th>
+            </thead>
+            {% for listC in recordsC %}
+            <tr>
+                <td> {{ listC.0 }} </td>
+                <td> {{ listC.1 }} </td>
+                <td> {{ listC.2 }} </td>
+                <td> {{ listC.3 }} </td>
                 <td>
             </tr>
             {% endfor %}
