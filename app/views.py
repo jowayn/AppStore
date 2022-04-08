@@ -366,7 +366,7 @@ def editR(request, id):
                    user_id = %s,
                    listing_id = %s,
                    date_range = %s
-               WHERE listing_id = %s
+               WHERE reservation_id = %s
                """
             , [request.POST['reservation_id'], 
                request.POST['user_id'], 
