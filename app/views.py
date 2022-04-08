@@ -187,7 +187,7 @@ def view_reservations(request, id):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM reservations WHERE listing_id = %s", [id])
         listing = cursor.fetchone()
-    result_dict = {'list': listing}
+    result_dict = {'records': listing}
 
     return render(request,'app/view_reservations.html',result_dict)
 
