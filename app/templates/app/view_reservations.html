@@ -45,26 +45,20 @@
     </a>
         
     <br/><br/>
-    <table style='text-align:left'>
-        <tr>
+    </div>
+    <table>
+        <thead>
             <th>Reservation ID</th>
-            <td>:</td>
-            <td> {{ list.0 }} </td>
-        </tr>
-        <tr>
             <th>Reserved by</th>
-            <td>:</td>
-            <td> {{ list.1 }} </td>
-        </tr>
-        <tr>
             <th>Listing ID</th>
-            <td>:</td>
-            <td> {{ list.2 }} </td>
-        </tr>
-        <tr>
             <th>Reservation period</th>
-            <td>:</td>
+        </thead>
+        <tr>
+            <td> {{ list.0 }} </td>
+            <td> {{ list.1 }} </td>
+            <td> {{ list.2 }} </td>
             <td> {{ list.3 }} </td>
+        </tr>
     </table>
     </div>
 </body>
