@@ -341,6 +341,47 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
+def editR(request, id):
+    """Shows edit page for reservations"""
+
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+
+    # fetch the object related to passed id
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM reservations WHERE listing_id = %s", [id])
+        obj = cursor.fetchone()
+
+    status = ''
+    # save the data from the form
+
+    if request.POST:
+        ##TODO: date validation
+        with connection.cursor() as cursor:
+            cursor.execute(
+               """
+               UPDATE reservations SET 
+                   reservation_id = %s,
+                   user_id = %s,
+                   listing_id = %s,
+                   date_range = %s
+               WHERE listing_id = %s
+               """
+            , [request.POST['reservation_id'], 
+               request.POST['user_id'], 
+               request.POST['listing_id'],
+               request.POST['date_range'],
+               id ])
+            status = 'Reservation edited successfully!'
+            cursor.execute("SELECT * FROM reservations WHERE reservation_id = %s", [id])
+            obj = cursor.fetchone()
+
+    context["obj"] = obj
+    context["status"] = status
+ 
+    return render(request, "app/editR.html", context)
+
 def reservations(request):
     """Shows the reservations table"""
     context = {}
